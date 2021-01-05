@@ -1,0 +1,505 @@
+<html>
+
+<body>
+	
+
+
+	<table width="600" border="1">
+		<tr>
+			<th>
+				<div align="center">ID</div>
+			</th>
+			<th>
+				<div align="center">เลขที่ Booking </div>
+			</th>
+			<th>
+				<div align="center">เดือน </div>
+			</th>
+			<th>
+				<div align="center">วันที่ทำรายการ </div>
+			</th>
+			<th>
+				<div align="center">ชื่อลูกค้า </div>
+			</th>
+			<th>
+				<div align="center">เบอร์โทรศัพท์ </div>
+			</th>
+
+			<th>
+				<div align="center">สถานที่เข้าพัก </div>
+			</th>
+			<th>
+				<div align="center">แพคเกจ </div>
+			</th>
+			<th>
+				<div align="center">จำนวนห้อง </div>
+			</th>
+			<th>
+				<div align="center">เตียงเสริม </div>
+			</th>
+			<th>
+				<div align="center">จำนวนลูกค้า </div>
+			</th>
+			<th>
+				<div align="center">วันที่เช็คอิน </div>
+			</th>
+			<th>
+				<div align="center">วันที่เช็คเอาท์ </div>
+			</th>
+			<th>
+				<div align="center">ยอดขาย </div>
+			</th>
+			<th>
+				<div align="center">มัดจำคงเหลือ </div>
+			</th>
+			<th>
+				<div align="center">ยอดสุทธิ </div>
+			</th>
+			<th>
+				<div align="center">เรือ </div>
+			</th>
+			<th>
+				<div align="center">รถ </div>
+			</th>
+			<th>
+				<div align="center">ดำน้ำ </div>
+			</th>
+			<th>
+				<div align="center">สถานะการชำระเงิน </div>
+			</th>
+			<th>
+				<div align="center">สถานะการเข้าพัก </div>
+			</th>
+			<th>
+				<div align="center">วันที่เก็บเงินมัดจำ </div>
+			</th>
+			<th>
+				<div align="center">ต้นทุน </div>
+			</th>
+			<th>
+				<div align="center">% Com </div>
+			</th>
+			<th>
+				<div align="center">มูลค่าคอมมิชชั่น </div>
+			</th>
+			<th>
+				<div align="center">กำไรขาดทุน </div>
+			</th>
+			<th>
+				<div align="center">หมายเหตุ </div>
+			</th>
+
+
+		</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">29</div>
+				</td>
+				<td>0029</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest1</td>
+				<td>085891231</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>11 วัน 10 คืน</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>2020-12-11</td>
+				<td>2020-12-21</td>
+				<td>4000</td>
+				<td>4000</td>
+				<td>8000</td>
+				<td>ไม่เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>240</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">31</div>
+				</td>
+				<td>0031</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest1</td>
+				<td>085891231</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>11 วัน 10 คืน</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>2020-12-11</td>
+				<td>2020-12-21</td>
+				<td>0</td>
+				<td>0</td>
+				<td>8000</td>
+				<td>ไม่เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>240</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">32</div>
+				</td>
+				<td>0032</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest2</td>
+				<td>0963523569</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>4 วัน 3 คืน</td>
+				<td>1</td>
+				<td>1</td>
+				<td>3</td>
+				<td>2020-12-11</td>
+				<td>2020-12-14</td>
+				<td>5500</td>
+				<td>5060</td>
+				<td>10560</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>317</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">33</div>
+				</td>
+				<td>0033</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest2</td>
+				<td>0963523569</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>4 วัน 3 คืน</td>
+				<td>1</td>
+				<td>1</td>
+				<td>3</td>
+				<td>2020-12-11</td>
+				<td>2020-12-14</td>
+				<td>0</td>
+				<td>5500</td>
+				<td>10560</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>317</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">34</div>
+				</td>
+				<td>0034</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest3</td>
+				<td>0862321568</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>3 วัน 2 คืน</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>2020-12-11</td>
+				<td>2020-12-13</td>
+				<td>2500</td>
+				<td>3170</td>
+				<td>5670</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>170</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">35</div>
+				</td>
+				<td>0035</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest3</td>
+				<td>0862321568</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>3 วัน 2 คืน</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>2020-12-11</td>
+				<td>2020-12-13</td>
+				<td>0</td>
+				<td>2500</td>
+				<td>5670</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ได้เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>170</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">36</div>
+				</td>
+				<td>0036</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest4</td>
+				<td>0968585232</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>4 วัน 3 คืน</td>
+				<td>0</td>
+				<td>0</td>
+				<td>1</td>
+				<td>2020-12-11</td>
+				<td>2020-12-14</td>
+				<td>1150</td>
+				<td>1150</td>
+				<td>2300</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ไม่เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>69</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+
+			<tr>
+				<td>
+					<div align="center">37</div>
+				</td>
+				<td>0037</td>
+				<td>
+											<p>เดือนธันวาคม</p>
+									</td>
+				<td>2020-12-11</td>
+				<td>UserTest4</td>
+				<td>0968585232</td>
+				<!-- 	<td>Akira</td> -->
+				<td>Superior Pool View (Akira)</td>
+				<td>4 วัน 3 คืน</td>
+				<td>0</td>
+				<td>0</td>
+				<td>1</td>
+				<td>2020-12-11</td>
+				<td>2020-12-14</td>
+				<td>0</td>
+				<td>1150</td>
+				<td>2300</td>
+				<td>ได้เพิ่มรถ
+				</td>
+				<td>ไม่เพิ่มเรือ</td>
+				<td>0</td>
+
+				<td>
+											<b style="color: red;">จ่ายมัดจำ</b>
+					
+				</td>
+
+				<td>
+
+											<b> เข้าพักแล้ว</b>
+					
+				</td>
+				<td>2020-12-11</td>
+				<td>----</td>
+				<td> 3%</td>
+				<td>69</td>
+				<td>----</td>
+
+				<td>1</td>
+
+			</tr>
+
+		
+
+	</table>
+
+
+
+
+
+</body>
+
+</html>
