@@ -284,12 +284,10 @@ $typser = $_POST["typser"];
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>
-                                    <h4 class="text-blue h4">รายละเอียดเเพคเกจ </h4>
+                                    <h4 class="text-blue h4">รายละเอียดเเพ็คเกจ </h4>
                                 </label><textarea id="details" name="details" class="form-control" rows="4" cols="50"></textarea>
-
                             </div>
                         </div>
-
                         <script>
                             // Get the modal
                             var modal = document.getElementById("myModal");
@@ -314,10 +312,6 @@ $typser = $_POST["typser"];
                                 modal.style.display = "none";
                             }
                         </script>
-
-
-
-
 
                         <script language="javascript">
                             $(document).ready(function() {

@@ -63,14 +63,13 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
     if ($row1['ch1'] == '') {
         $ch1 = 0;
-    }else{
+    } else {
         $ch1 = $row1['ch1'];
-    
     }
 
     if ($row1['ch2'] == '') {
         $ch2 = 0;
-    }else{
+    } else {
         $ch2 = $row1['ch2'];
     }
     // if ($row1["extrabed"] == '0') {
@@ -235,14 +234,17 @@ while ($row1 = mysqli_fetch_array($result1)) {
  </table>
 ';
 }
-//$content .= fetch_data();  height="500"
-//$stylesheet = file_get_contents('style.css');
-//$obj_pdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
-//$obj_pdf->WriteHTML($content,\Mpdf\HTMLParserMode::HTML_BODY);
+// $content .= fetch_data();  
+// $stylesheet = file_get_contents('style.css');
+// $obj_pdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+// $obj_pdf->WriteHTML($content,\Mpdf\HTMLParserMode::HTML_BODY);
 
 
 
 
 $obj_pdf->writeHTML($content);
 $name = 'Invoice-' . $id_booking . '.pdf';
+$obj_pdf->AddPage();
+$obj_pdf->Image('img/slips/413.jpg');
 $obj_pdf->Output($name, 'I');
+

@@ -28,6 +28,7 @@ if ($num_rows > 0) {
         $i++;
     }
 //     // echo $message . "<br>" . $d;
+
 $Token = "LLHQCmiOVjOjpwiAAiblUjOONK5kUqEVyObBCNwdTIL";
 // $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nสถานะการชำระเงิน " . $d . "\nยอดเงินในการชำระ: " . $Sales . "\nติดต่อ: " . $phone . "\nInvoice: https://thechiclipe.com/form_resort/report5.php?id=" . $ss['id'];
 // $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nสถานะการชำระเงิน " . $d . "\nยอดเงินในการชำระ: " . $Sales . "\nติดต่อ: " . $phone . "\nInvoice: http://localhost/booking/report5.php?id=" . $ss['id'];
@@ -57,5 +58,5 @@ if (curl_error($chOne)) {
     // echo "status : ".$result_['status']; echo "message : ". $result_['message'];
 }
 curl_close($chOne);
-    echo  $message;
+    // echo  $message;
 }

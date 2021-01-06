@@ -88,7 +88,7 @@ include_once('connectdb.php'); ?>
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label>
-                                    <h4 class="text-blue h4">Name </h4>
+                                    <h4 class="text-blue h4">Status</h4>
                                 </label>
                                 <select class="custom-select col-12" name="status" id="status" required>
                                     <option value="0">ใหญ่สุด</option>

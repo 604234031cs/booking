@@ -18,7 +18,7 @@ if ($noid_booking != null && $noid_booking != "") {
 } else {
 	$id_v = $_REQUEST['id_booking'];
 	// echo $noid_booking;
-	echo "ไมมีเลชอ้างอิง";
+	echo "ไมมีเลขอ้างอิง";
 }
 
 

@@ -1601,7 +1601,7 @@ if ($older_children >= "1") {
 
               <div class="col-md-2 col-sm-12">
                 <label class="weight-600">
-                  <h4 class="text-blue h4">เเพคเกจเสริม</h4>
+                  <h4 class="text-blue h4">เเพ็คเกจเสริม</h4>
                 </label>
                 <div class="custom-control custom-checkbox mb-12">
                   <?php
@@ -1637,19 +1637,8 @@ if ($older_children >= "1") {
                 <input style="color: #fff;" class="btn btn-primary form-control" type="submit" value="ตรวจสอบใหม่">
               </div>
 
-
-
-
-
-
-
-
-
-
             </div>
           </form>
-
-
 
           <div class="clearfix mb-20">
             <div class="pull-left">
@@ -1682,6 +1671,7 @@ if ($older_children >= "1") {
                 <th scope="row">-</th>
                 <th scope="row">
                   <span class="badge badge-secondary">
+                  
                     <?php
                     $sum_15 = ((($sum_price_room * 15) / 100) + $sum_price_room) / $adult;
                     echo  number_format(($sum_15), 2); ?>
@@ -1796,8 +1786,7 @@ if ($older_children >= "1") {
 
               <tr style="color:red">
                 <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
-                  ราคารวมสำหรับ
-                  <br>ผู้ใหญ่ต่อท่าน</th>
+                  ราคารวมผู้ใหญ่ต่อท่าน
                 <th scope="row">
                   <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
                     <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)), 2) ?>
@@ -1819,12 +1808,35 @@ if ($older_children >= "1") {
                 <th scope="row"><?= number_format((($sum_10 + $car_sum_10+ $boat_sum_10 + $diving_sum_10) * 1 / 100), 2) ?></th>
               </tr>
 
-
-
-
               <?php if ($older_children != "" && $older_children != 0) { ?>
-                <tr>
-                  <th scope="row" style="padding-left: 3%!important;text-align:left!important">เด็ก อายุ 4-10 ปี </th>
+              
+                <tr style="color:red">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
+                ราคารวมเด็ก อายุ 4-10 ปีต่อทาน
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
+                    <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)*0.7), 2) ?>
+                  </span>
+                </th>
+                <th scope="row"><?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) *0.7* 3 / 100), 2) ?></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
+                    <?= number_format((($sum_15 + $car_sum_15+ $boat_sum_15 + $diving_sum_15)*0.7), 2) ?>
+                  </span>
+                </th>
+                <th scope="row"><?= number_format((($sum_15 + $car_sum_15+ $boat_sum_15 + $diving_sum_15) *0.7* 2 / 100), 2) ?></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
+
+                    <?= number_format((($sum_10 + $car_sum_10+ $boat_sum_10 + $diving_sum_10)*0.7), 2) ?>
+                  </span>
+                </th>
+                <th scope="row"><?= number_format((($sum_10 + $car_sum_10+ $boat_sum_10 + $diving_sum_10) *0.7* 1 / 100), 2) ?></th>
+              </tr>
+
+
+                <!-- <tr style="color:red" >
+                  <th scope="row" style="padding-left: 3%!important;text-align:left!important">ราคารวมเด็ก อายุ 4-10 ปีต่อทาน </th>
                   <th scope="row">
                     <span class="badge badge-primary">
                       <?php
@@ -1838,7 +1850,7 @@ if ($older_children >= "1") {
                   <th scope="row">
                     <span class="badge badge-secondary">
                       <?php
-                      $older_children_15 = ((($sum_15) * 70) / 100) - $sum_adult;
+                      $older_children_15 = ((($sum_15) * 70) / 100);
                       echo  number_format(($older_children_15), 2); ?>
 
                     </span>
@@ -1847,23 +1859,24 @@ if ($older_children >= "1") {
                   <th scope="row">
                     <span class="badge badge-success">
                       <?php
-                      $older_children_10 = ((($sum_10) * 70) / 100) - $sum_adult;
+                      $older_children_10 = ((($sum_10) * 70) / 100);
                       echo  number_format(($older_children_10), 2); ?>
 
                     </span>
                   </th>
                   <th scope="row">-</th>
-                </tr>
+                </tr> -->
               <?php } else {
               } ?>
               <?php if ($child != "" && $child != 0) { ?>
-                <tr>
-                  <th scope="row" style="padding-left: 3%!important;text-align:left!important">เด็ก อายุ 0-3 ปี (ฟรี)</th>
+                <tr style="color:red">
+                  <th scope="row" style="padding-left: 3%!important;text-align:left!important">ราคารวมเด็ก อายุ 0-3 ปีต่อทาน</th>
                   <th scope="row"><span class="badge badge-primary">-</span></th>
                   <th scope="row">-</th>
                   <th scope="row"><span class="badge badge-secondary">-</span></th>
                   <th scope="row">-</th>
                   <th scope="row"><span class="badge badge-success">-</span></th>
+                  <th scope="row">-</th>
                 </tr>
 
               <?php } else {
@@ -1871,7 +1884,7 @@ if ($older_children >= "1") {
 
               <?php if ($older_children != "" && $older_children != 0) { ?>
 
-                <tr>
+                <!-- <tr>
                   <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่ารถไป-กลับ ต่อท่าน</th>
                   <th scope="row">
                     <span class="badge badge-primary">
@@ -1897,12 +1910,12 @@ if ($older_children >= "1") {
                     </span>
                   </th>
                   <th scope="row">-</th>
-                </tr>
+                </tr> -->
               <?php } else {
               } ?>
 
               <?php if ($older_children != "" && $older_children != 0) { ?>
-                <tr>
+                <!-- <tr>
                   <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าเรือไป-กลับ ต่อท่าน</th>
                   <th scope="row">
                     <span class="badge badge-primary">
@@ -1928,14 +1941,12 @@ if ($older_children >= "1") {
                     </span>
                   </th>
                   <th scope="row">-</th>
-                </tr>
+                </tr> -->
               <?php } else {
               } ?>
 
               <?php if ($older_children != "" && $older_children != 0) { ?>
-                <tr>
-
-
+                <!-- <tr>
                   <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าดำน้ำ ต่อท่าน</th>
                   <th scope="row">
                     <span class="badge badge-primary">
@@ -1961,37 +1972,11 @@ if ($older_children >= "1") {
                     </span>
                   </th>
                   <th scope="row">-</th>
-                </tr>
+                </tr> -->
               <?php } else {
               } ?>
 
               <?php if ($older_children != "" && $older_children != 0) { ?>
-                <tr style="color: red;">
-                  <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">ราคารวมสำหรับ <br>เด็ก อายุ 4-10 ปี ต่อท่าน <?php echo $text; ?> </th>
-                  <th scope="row">
-                    <span class="badge" style="background-color:red;color:#fff;border-radius:5px">
-                      <?php $older_20 = $older_children_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20; ?>
-                      <?= number_format(($older_20), 2) ?>
-
-                    </span>
-                  </th>
-                  <th scope="row"><?= number_format((($older_20) * 3 / 100), 2) ?></th>
-                  <th scope="row">
-                    <span class="badge" style="background-color:red;color:#fff;border-radius: 5px">
-                      <?php $older_15 = $older_children_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15; ?>
-                      <?= number_format(($older_15), 2) ?>
-                    </span>
-                  </th>
-                  <th scope="row"><?= number_format((($older_15) * 2 / 100), 2) ?></th>
-                  <th scope="row">
-                    <span class="badge" style="background-color:red;color:#fff;border-radius:5px;">
-
-                      <?php $older_10 = $older_children_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10; ?>
-                      <?= number_format(($older_10), 2) ?>
-                    </span>
-                  </th>
-                  <th scope="row"> <?= number_format((($older_10) * 1 / 100), 2) ?></th>
-                </tr>
 
               <?php } else {
               } ?>
@@ -2030,25 +2015,28 @@ if ($older_children >= "1") {
 
           <div>
             <div class="pull-center">
-              <h5 class="text-blue h5">รายละเอียดค่าใช้จ่าย จำนวน <?php echo $diff_result + 1; ?> วัน <?php echo $diff_result; ?> คืน </h5>
-              <h5 class="text-blue h5">จำนวนห้อง <?php
+              <h5 class="text-blue h5">รายละเอียดค่าใช้จ่าย  จำนวน :  <span style="color: red;"> <?php echo $diff_result + 1; ?> วัน <?php echo $diff_result; ?> คืน </h5></span>
+              <h5 class="text-blue h5">จำนวนห้อง : <span style="color: red;"><?php
+                                                
                                                   if ($adult % 2 == 0) {
+                                      
                                                     $bed = ($adult / 2);
                                                     echo $bed;
                                                     echo " ห้อง";
                                                   } else {
                                                     $bed = ($adult - 1) / 2;
-
                                                     echo $bed;
                                                     echo " ห้อง  เตียงเสริม 1 เตียง ";
                                                   }
 
-                                                  ?> </h5>
+                                                  ?> </h5></span>
               <h5 class="text-blue h5">
-                จำนวนผู้ใหญ่ : <?php echo $adult; ?> คน
-                <br>เด็ก อายุ 4-10 ปี <?php echo $older_children; ?> คน
-                <br>เด็ก อายุ 0-3 ปี (ฟรี) <?php echo $child; ?> คน
+              
+                จำนวนผู้ใหญ่ : <span style="color: red;"> <?php echo $adult; ?> คน</span>
+                <br>จำนวนเด็ก อายุ 4-10 ปี :  <span style="color: red;"><?php echo $older_children; ?> คน </span>
+                <br>จำนวนเด็ก อายุ 0-3 ปี : <span style="color: red;"> <?php echo $child; ?> คน </span>
               </h5>
+              
             </div>
 
 
@@ -2071,7 +2059,7 @@ if ($older_children >= "1") {
 
                   <?php if ($older_children != "" && $older_children != 0) { ?>
                     <tr>
-                      <th scope="row"></th>
+                      <th scope="row">เพิ่มเตียงเสริม</th>
                       <th scope="row">Extra Bed</th>
                     </tr>
                   <?php } else {
@@ -2104,24 +2092,25 @@ if ($older_children >= "1") {
                   <tr>
                     <th scope="row">
                       จำนวน ผู้ใหญ่
-                      <?php echo $adult; ?>
-                      คน <br />
-                      เด็ก อายุ 4-10 ปี
-                      <?php echo $older_children; ?>
-                      คน <br />
-                      เด็ก อายุ 0-3 ปี (ฟรี)
-                      <?php echo $child; ?>
-                      คน
+                      <span style="color:red;"> <?php echo $adult; ?>
+                      คน <br /></span>
+                      จำนวน เด็ก อายุ 4-10 ปี
+                      <span style="color:red;"><?php echo $older_children; ?>
+                      คน <br /></span>
+                      จำนวน เด็ก อายุ 0-3 ปี 
+                      <span style="color:red;"> <?php echo $child; ?>
+                      คน</span>
                     </th>
-                    <th scope="row">
-                      <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + (($older_20) * $older_children), 2) ?>
+                    <th scope="row" style="color:red;">
+                    <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)*0.7) * $older_children), 2) ?>
+                      <!-- <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + (($older_20) * $older_children), 2) ?> -->
                     </th>
                   </tr>
                   <tr>
                     <th scope="row">ค่าคอมรวม 3%</th>
                     <th scope="row">
                       <?php
-                      $a = (($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + (($older_20) * $older_children);
+                      $a = (($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)*0.7) * $older_children);
                       //  $a =($sum_20*$adult)+($older_children_20*$older_children)+(($sum_adult*($_REQUEST[ 'adult' ])+($_REQUEST[ 'older_children' ]*$sum)))
                       ?>
                       <?= number_format((($a) * 3 / 100), 2) ?>
@@ -2200,7 +2189,7 @@ if ($older_children >= "1") {
 
                   <?php if ($older_children != "" && $older_children != 0) { ?>
                     <tr>
-                      <th scope="row"></th>
+                      <th scope="row">เพิ่มเตียงเสริม</th>
                       <th scope="row">Extra Bed</th>
                     </tr>
                   <?php } else {
@@ -2240,12 +2229,12 @@ if ($older_children >= "1") {
 
 
                   <tr>
-                    <th scope="row">จำนวน ผู้ใหญ่ <?php echo $adult; ?> คน <br>เด็ก อายุ 4-10 ปี <?php echo $older_children; ?> คน <br>เด็ก อายุ 0-3 ปี (ฟรี) <?php echo $child; ?> คน</th>
+                    <th scope="row">จำนวน ผู้ใหญ่ <span style="color:red;"><?php echo $adult; ?> คน</span> <br>จำนวน เด็ก อายุ 4-10 ปี <span style="color:red;"><?php echo $older_children; ?> คน </span><br>จำนวน เด็ก อายุ 0-3 ปี  <span style="color:red;"><?php echo $child; ?> คน</span></th>
                     <th scope="row">
-                      <?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * $adult) + (($older_15) * $older_children), 2) ?>
-
+                    <span style="color:red;">
+                      <?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * $adult) + ((($sum_15+$car_sum_15 + $boat_sum_15 + $diving_sum_15)*0.7) * $older_children), 2) ?>
+                    </span>
                       <!-- <?= number_format(($sum_15 * $adult) + ($older_children_15 * $older_children) + (($car_sum_15 + $boat_sum_15 + $diving_sum_15 * ($_REQUEST['adult']) + ($_REQUEST['older_children'] * $sum))), 2) ?> -->
-
                     </th>
 
 
@@ -2254,7 +2243,7 @@ if ($older_children >= "1") {
                     <th scope="row">รวมค่าคอม 2%</th>
                     <th scope="row">
                       <?php
-                      $aa = (($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * $adult) + (($older_15) * $older_children);
+                      $aa = (($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * $adult) + ((($sum_15 + $car_sum_15+ $boat_sum_15 + $diving_sum_15)*0.7) * $older_children);
                       // $aa = ($sum_15*$adult)+($older_children_15*$older_children)+(($sum_adult*($_REQUEST[ 'adult' ])+($_REQUEST[ 'older_children' ]*$sum)));
                       ?>
                       <?= number_format((($aa) * 2 / 100), 2) ?>
@@ -2333,7 +2322,7 @@ if ($older_children >= "1") {
 
                   <?php if ($older_children != "" && $older_children != 0) { ?>
                     <tr>
-                      <th scope="row"></th>
+                      <th scope="row">เพิ่มเตียงเสริม</th>
                       <th scope="row">Extra Bed</th>
                     </tr>
                   <?php } else {
@@ -2372,10 +2361,11 @@ if ($older_children >= "1") {
 
 
                   <tr>
-                    <th scope="row">จำนวน ผู้ใหญ่ <?php echo $adult; ?> คน <br>เด็ก อายุ 4-10 ปี <?php echo $older_children; ?> คน <br>เด็ก อายุ 0-3 ปี (ฟรี) <?php echo $child; ?> คน</th>
+                    <th scope="row">จำนวน ผู้ใหญ่ <span style="color:red;"><?php echo $adult; ?> คน </span><br>จำนวน เด็ก อายุ 4-10 ปี <span style="color:red;"><?php echo $older_children; ?> คน</span> <br>จำนวน เด็ก อายุ 0-3 ปี <span style="color:red;"> <?php echo $child; ?> คน</span></th>
                     <th scope="row">
-                      <?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * $adult) + (($older_10) * $older_children), 2) ?>
-
+                    <span style="color:red;">
+                      <?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * $adult) + ((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10)*0.7) * $older_children), 2) ?>
+                    </span>
                     </th>
 
 
@@ -2384,7 +2374,7 @@ if ($older_children >= "1") {
                     <th scope="row">รวมค่าคอม 1%</th>
                     <th scope="row">
                       <?php
-                      $aaa = (($sum_15 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * $adult) + (($older_15) * $older_children);
+                      $aaa = (($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * $adult) + ((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10)*0.7) * $older_children);
 
                       ?>
                       <?= number_format((($aaa) / 100), 2) ?>

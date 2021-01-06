@@ -202,5 +202,4 @@ $obj_pdf->setCellPaddings($left = '0', $top = '0', $right = '0', $bottom = '0');
 
       $obj_pdf->writeHTML($content);
       $name = 'Invoice-'.$id_booking.'.pdf';
-      $obj_pdf->Output($name, 'I');  
-?>
+      $obj_pdf->Output($name, 'I');

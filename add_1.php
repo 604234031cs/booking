@@ -392,7 +392,7 @@ if ($type == "addresort") {
 				$Token = "LLHQCmiOVjOjpwiAAiblUjOONK5kUqEVyObBCNwdTIL";
 				// $Token = "etxmEbZ2cY5OvNGJtUS5dJcaR1gXVbdmpiJ0tuRCVTY";
 				// $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nยอดคงเหลือ 0\nยอดเงินในการชำระ: " . $deposit1 . "\nยอดสุทธิ: " . $sum;
-				$message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nยอดคงเหลือ 0\nยอดเงินในการชำระ: " . $deposit1 . "\nยอดสุทธิ: " . $sum;
+				$message = "\nเลขที่ " . $text . "\nชื่อลูกค้า : " . $name . " \nโรงเเรมที่จอง : " . $room_name . "\nวันที่เช็คอิน : " . $checkin . "\nวันที่เช็คเอาท์ : " . $checkout . "\nยอดคงเหลือ : 0\nยอดเงินในการชำระ : " . number_format($deposit1) . "\nยอดสุทธิ : " . number_format($sum);
 
 
 

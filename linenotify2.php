@@ -56,5 +56,5 @@ if ($num_rows > 0) {
         echo "message : " . $result_['message'];
     }
     curl_close($chOne);
-    echo $message;
+    // echo $message;
 }

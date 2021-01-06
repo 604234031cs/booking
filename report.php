@@ -251,10 +251,10 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>
-                                        <h4 class="text-blue h4">ที่พัก<?= $resort_name ?></h4>
+                                        <h4 class="text-blue h4">ที่พัก</h4>
                                     </label>
                                     <select class="custom-select col-12" name="resort_name">
-                                        <option required><?php echo $resort_name; ?></option>
+                                        <option  required><?php echo $resort_name; ?></option>
                                         <?php
 
                                         $sql1 = "SELECT * FROM `tb_resort`";
@@ -268,7 +268,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>
-                                        <h4 class="text-blue h4">วันที่เริ่มต้น<?php echo $date_star ?></h4>
+                                        <h4 class="text-blue h4">วันที่เริ่มต้น</h4>
                                     </label>
                                     <input type="date" class="form-control" name="date_star" value="<?php echo $date_star ?>" required>
 
@@ -277,7 +277,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>
-                                        <h4 class="text-blue h4">วันที่สิ้นสุด<?php echo $date_end ?></h4>
+                                        <h4 class="text-blue h4">วันที่สิ้นสุด</h4>
                                     </label>
                                     <input type="date" class="form-control" name="date_end" value="<?php echo $date_end ?>" required>
 
@@ -365,7 +365,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                             <?php
                             //$sql ="SELECT * FROM `tb_resort` ";
 
-                            $datenow = date("Y-m-d");
+                            $datenow = date("Y-m-");
                             // echo $datenow;
 
                             if ($all == 'all') {
