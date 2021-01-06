@@ -346,7 +346,7 @@ if ($type == "addresort") {
 
 		$upload_dir = "img/slips/";
 		$uploaded_file = $upload_dir . $fileName;
-
+		$imageFileType = strtolower(pathinfo($uploaded_file, PATHINFO_EXTENSION));
 		// $Sales2
 
 		if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
@@ -372,18 +372,22 @@ if ($type == "addresort") {
 				$resort_name = $ss['room_name'];
 
 				$ytsever = substr(date("Y") + 543, -2);
-				echo $row;
+				// echo $row;
 				if ($row <= 0) {
 					$num = substr("0000" . 1, -4);
 					$text = "" . $num . "-" . $ytsever;
+					$reimge = $text . "." . $imageFileType;
 					$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
 					$a = mysqli_query($con, $in);
+					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
 				} else {
 
 					$num = substr("0000" . $row, -4);
 					$text = "" . $num . "-" . $ytsever;
+					$reimge = $text . "." . $imageFileType;
 					$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
 					$a = mysqli_query($con, $in);
+					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
 				}
 
 				// echo "<script> alert('ได้ทำการลบประเภทรีสอร์ท เรียบร้อย!!');window.location.href='edit.php?id=$resort_name';</script>";

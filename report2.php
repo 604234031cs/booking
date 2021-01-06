@@ -34,7 +34,7 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 
 
 // $connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
-$connect = mysqli_connect("localhost", "root", "", "booking");
+$connect = mysqli_connect("localhost", "root", "", "booking2");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
 $result1 = mysqli_query($connect, $sql1);
 

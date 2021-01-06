@@ -34,7 +34,7 @@ $obj_pdf->setCellPaddings($left = '0', $top = '0', $right = '0', $bottom = '0');
       
      
       //$connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
-      $connect = mysqli_connect("localhost", "root", "", "booking");  
+      $connect = mysqli_connect("localhost", "root", "", "booking2");  
       $sql1 = "SELECT * FROM tb_report   WHERE id ='".$_GET["id"]."' ";  
       $result1 = mysqli_query($connect, $sql1); 
       

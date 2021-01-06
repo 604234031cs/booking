@@ -40,6 +40,25 @@ $diving3 = $results33["price"];
 // $tdiving = $results33["name"];
 
 
+
+
+$sql33 = "SELECT * FROM tb_car_boat_diving WHERE status='1'";
+$query33 = mysqli_query($con, $sql33);
+$results33 = mysqli_fetch_assoc($query33);
+
+// while ($results33 = mysqli_fetch_assoc($query33)) {
+
+$car_num1 = $results33["price"];
+
+// }
+
+
+$sql44 = "SELECT * FROM `tb_car_boat_diving` WHERE status = '2'";
+$query44 = mysqli_query($con, $sql44);
+while ($results44 = mysqli_fetch_assoc($query44)) {
+
+  $boat_num1 = $results44["price"];
+}
 ?>
 
 
@@ -147,6 +166,9 @@ $diving3 = $results33["price"];
                   <input class="date-field form-control" id="type1-start" type="text" placeholder="Starting Date" name="Checkin" onchange="autotwodate()">
                 </div>
                 <script>
+                  let diving1 = <?php echo $diving1 ?>;
+                  let diving2 = <?php echo $diving2 ?>;
+                  let diving3 = <?php echo $diving3 ?>;
                   $(document).ready(function() {
                     let dayNamesMin = ["จันทร์", "อังคาร", "พุทธ", "พฤหัส", "ศุกร์", "เสาร์", "อาทิต"];
                     let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November	', 'December'];
@@ -155,9 +177,7 @@ $diving3 = $results33["price"];
                     let cDay = "" + d.getDate();
                     let currDay = d.getMonth() + 1 + "/" + cDay.padStart(2, "0") + "/" + d.getFullYear();
 
-                    let diving1 = <?php echo $diving1 ?>;
-                    let diving2 = <?php echo $diving2 ?>;
-                    let diving3 = <?php echo $diving3 ?>;
+
 
                     // alert(diving1)
                     // alert(diving2)
@@ -205,13 +225,9 @@ $diving3 = $results33["price"];
                       txt += "<div class='custom-control custom-radio mb-5'>";
                       txt += "<input type='radio' id='diving3' name='diving' class='custom-control-input' value='" + diving3 + "'>";
                       txt += "<label class='custom-control-label' for='diving3'>ดำน้ำโซนใน + โซนนอก</label></div>";
-                      txt += "<button type='button' id='clearradio' class='btn btn-warning form-control' style='color:#fff'>ยกเลิกดำน้ำ</button>";
+                      txt += "<button type='button' id='clearradio' onclick='clearRadio()' class='btn btn-warning form-control' style='color:#fff'>ยกเลิกดำน้ำ</button>";
                       $(".radio").append(txt);
-                      $("#clearradio").click(function() {
-                        $("#diving1").prop("checked", false);
-                        $("#diving2").prop("checked", false);
-                        $("#diving3").prop("checked", false);
-                      });
+
 
                       $('input[type=radio]').click(function() {
                         if ($('#diving1').prop('checked')) {
@@ -231,8 +247,13 @@ $diving3 = $results33["price"];
                       })
 
                     }
-
                   });
+
+                  function clearRadio() {
+                    $("#diving1").prop("checked", false);
+                    $("#diving2").prop("checked", false);
+                    $("#diving3").prop("checked", false);
+                  }
                 </script>
 
 
@@ -439,20 +460,22 @@ $diving3 = $results33["price"];
             </label>
             <div class="radio">
             </div>
+            <div class="checkbox">
+            </div>
           </div>
           <div class="col-md-2 col-sm-12">
             <label class="weight-600">
               <h4 class="text-blue h4">เเพคเกจเสริม<?php echo $tcar; ?></h4>
             </label>
             <div class="custom-control custom-checkbox mb-12">
-              <input type="checkbox" class="custom-control-input" id="customCheck1" name="car">
+              <input type="checkbox" class="custom-control-input" id="customCheckcar" name="car">
 
-              <label class="custom-control-label" for="customCheck1">รถ</label>
+              <label class="custom-control-label" for="customCheckcar">รถ</label>
             </div>
             <div class="custom-control custom-checkbox mb-12">
-              <input type="checkbox" class="custom-control-input" id="customCheck2" name="boat">
+              <input type="checkbox" class="custom-control-input" id="customCheckboat" name="boat">
 
-              <label class="custom-control-label" for="customCheck2">เรือ</label>
+              <label class="custom-control-label" for="customCheckboat">เรือ</label>
             </div>
 
 
@@ -462,6 +485,10 @@ $diving3 = $results33["price"];
             </div>
 
           </div>
+          <div class="col-md-12 col-sm-12">
+            <input class="btn btn-primary" type="button" value="ตรวจสอบ" onclick="showDetailPrice()">
+          </div>
+
 
           <style type="text/css">
             .inputs {
@@ -1055,7 +1082,76 @@ $diving3 = $results33["price"];
 
                         let dateField = widget.querySelector(".date-field");
                         let fullDate = `${cellText.textContent} ${month.longName} ${year} `
-                        // console.log(fullDate);
+                        console.log(dateField.id);
+                        if (dateField.id == 'type1-deadline') {
+                          let c = new Date($('#type1-start').val());
+                          let f = new Date(fullDate);
+                          let cDay = "" + c.getDate();
+                          let fDay = "" + f.getDate();
+                          let cMonth = "" + c.getMonth() + 1;
+                          let fMonth = "" + f.getMonth() + 1;
+                          let feturDay = fMonth.padStart(2, "0") + "/" + fDay.padStart(2, "0") + "/" + f.getFullYear();
+                          let currenDay = cMonth.padStart(2, "0") + "/" + cDay.padStart(2, "0") + "/" + c.getFullYear();
+                          // console.log(currenDay);
+                          var date1 = new Date(currenDay);
+
+                          var date2 = new Date(feturDay);
+                          var Difference_In_Time = date2.getTime() - date1.getTime();
+                          var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+                          let txt = "";
+
+                          // let diving1 = <?php echo $diving1 ?>;
+                          // let diving2 = <?php echo $diving2 ?>;
+                          // let diving3 = <?php echo $diving3 ?>;
+                          // console.log(Difference_In_Days);
+                          if (Difference_In_Days + 1 >= 4) {
+                            $('.radio').empty();
+                            $('.checkbox').empty();
+                            txt += "<div class='custom-control custom-checkbox mb-12'>";
+                            txt += "<input type='checkbox' class='custom-control-input' id='customCheck1' name='car'>";
+                            txt += "<label class='custom-control-label' for='customCheck1'>ดำน้ำโซนใน</label></div>";
+                            txt += "<div class='custom-control custom-checkbox mb-12'>";
+                            txt += "<input type='checkbox' class='custom-control-input' id='customCheck2' name='boat'>";
+                            txt += " <label class='custom-control-label' for='customCheck2'>ดำน้ำโซนนอก</label></div>";
+                            txt += "<div class='custom-control custom-checkbox mb-12'>";
+                            txt += "<input type='checkbox' class='custom-control-input' id='customCheck3' name='boat'>";
+                            txt += " <label class='custom-control-label' for='customCheck3'>ดำน้ำโซนใน + โซนนอก</label></div>";
+                            $('.checkbox').append(txt);
+                          } else {
+                            $('.radio').empty();
+                            $('.checkbox').empty();
+                            txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                            txt += " <div class='custom-control custom-radio mb-5'>";
+                            txt += "<input type='radio' id='diving1' name='diving' class='custom-control-input' value='" + diving1 + "'>";
+                            txt += "<label class='custom-control-label' for='diving1'>ดำน้ำโซนใน</label></div>";
+                            txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                            txt += " <div class='custom-control custom-radio mb-5'>";
+                            txt += "<input type='radio' id='diving2' name='diving' class='custom-control-input' value='" + diving2 + "'>";
+                            txt += "<label class='custom-control-label' for='diving2'>ดำน้ำโซนนอก</label></div>";
+                            txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                            txt += "<div class='custom-control custom-radio mb-5'>";
+                            txt += "<input type='radio' id='diving3' name='diving' class='custom-control-input' value='" + diving3 + "'>";
+                            txt += "<label class='custom-control-label' for='diving3'>ดำน้ำโซนใน + โซนนอก</label></div>";
+                            txt += "<button type='button' id='clearradio'onclick='clearRadio()' class='btn btn-warning form-control' style='color:#fff'>ยกเลิกดำน้ำ</button>";
+                            $(".radio").append(txt);
+                          }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         updateDateField(e, fullDate, dateField);
                         updateSelData(e, dateField);
                         hideCalendar(e, cell.closest(".calendar-widget"));
@@ -1367,16 +1463,232 @@ $diving3 = $results33["price"];
 
               // If the next object that was focused in is a member of the widget, cancel the focusout function.
               widget.addEventListener("focusin", function(e) {
+                // console.log("PP");
                 // console.log(`${e.target.tagName}.${e.target.className} focus in.`);
                 clearTimeout(focusOutFunction);
               })
             })
+
+            function showDetailPrice() {
+              // $(".detail").empty();
+              let dateStart = new Date($('#type1-start').val());
+              let dateEnd = new Date($('#type1-deadline').val());
+
+              let priceCar = '<?php echo $car_num1; ?>';
+              priceCar = parseInt(priceCar);
+              let priceBoat = '<?php echo $boat_num1; ?>';
+              priceBoat = parseInt(priceBoat);
+              let car20 = ((priceCar * 20) / 100) + priceCar;
+              let car15 = ((priceCar * 15) / 100) + priceCar;
+              let car10 = ((priceCar * 10) / 100) + priceCar;
+              let boat20 = ((priceBoat * 20) / 100) + priceBoat;
+              let boat15 = ((priceBoat * 15) / 100) + priceBoat;
+              let boat10 = ((priceBoat * 10) / 100) + priceBoat;
+              // alert(typeof priceCar)
+              // alert(typeof priceBoat)
+              // $boat_num1
+              // customCheckcar
+              // customCheckboat
+              let checkCar = $('#customCheckcar').prop("checked");
+              let checkBoat = $('#customCheckboat').prop("checked");
+              // alert(checkCar);
+              // alert(checkBoat);
+              let ds = "" + dateStart.getDate();
+              let ms = "" + dateStart.getMonth() + 1;
+              let de = "" + dateEnd.getDate();
+              let me = "" + dateEnd.getMonth() + 1;
+
+              let fullDateStart = dateStart.getFullYear() + "-" + ms.padStart(2, "0") + "-" + ds.padStart(2, "0");
+              let fullDateEnd = dateEnd.getFullYear() + "-" + me.padStart(2, "0") + "-" + de.padStart(2, "0");
+              let id_roomtype = $('#name_roomtype').val();
+
+              var date1 = new Date(fullDateStart);
+              let numadult = $('#adult').val();
+              var date2 = new Date(fullDateEnd);
+              var Difference_In_Time = date2.getTime() - date1.getTime();
+              var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+              // console.log(id_roomtype);
+              // console.log(fullDateStart);
+              // console.log(fullDateEnd);
+              $.ajax({
+                type: "POST",
+                url: "getprice.php",
+                data: {
+                  date_start: fullDateStart,
+                  id_roomtype: id_roomtype,
+                  diffday: Difference_In_Days - 1
+                },
+                dataType: 'html',
+                success: function(data) {
+                  let sum_price_room = parseInt(data);
+                  let sum20 = (((sum_price_room * 20) / 100) + sum_price_room);
+                  let sum15 = (((sum_price_room * 15) / 100) + sum_price_room);
+                  let sum10 = (((sum_price_room * 10) / 100) + sum_price_room);
+                  sum20 = sum20.toFixed(2);
+                  sum15 = sum15.toFixed(2);
+                  sum10 = sum10.toFixed(2);
+                  let sum_20 = sum20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                  let sum_15 = sum15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                  let sum_10 = sum10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+                  $("#adult_20").html(sum_20);
+                  $("#adult_15").html(sum_15);
+                  $("#adult_10").html(sum_10);
+                }
+
+              });
+              if (checkCar != true) {
+                $("#tr_car").hide();
+              } else {
+                $("#tr_car").show();
+                car20 = car20.toFixed(2);
+                car15 = car15.toFixed(2);
+                car10 = car10.toFixed(2);
+                let sum_car20 = car20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                let sum_car15 = car15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                let sum_car10 = car10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                $('#sumcar_20').html(sum_car20);
+                $('#sumcar_15').html(sum_car15);
+                $('#sumcar_10').html(sum_car10);
+              }
+              if (checkBoat != true) {
+                $("#tr_boat").hide();
+              } else {
+                $("#tr_boat").show();
+                // let x1 = ((priceBoat * 20) / 100) + priceBoat;
+                // let x2 = ((priceBoat * 15) / 100) + priceBoat;
+                // let x3 = ((priceBoat * 10) / 100) + priceBoat;
+                boat20 = boat20.toFixed(2);
+                boat15 = boat15.toFixed(2);
+                boat10 = boat10.toFixed(2);
+                let sum_boat20 = boat20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                let sum_boat15 = boat15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                let sum_boat10 = boat10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                $('#sumboat_20').html(sum_boat20);
+                $('#sumboat_15').html(sum_boat15);
+                $('#sumboat_10').html(sum_boat10);
+              }
+              $("#pricehead").html('ราคาคิดตามเปอร์เซ็นค่าคอม');
+            }
           </script>
-
-          <div class="footer-wrap pd-20 mb-20 card-box">Welcome Akira Lipe , Ananya Lipe , Thechic Lipe <a href="https://ananyalipe.com" target="_blank">แบบฟอร์มเช็คราคาห้องพักของแต่ละรีสอร์ท</a></div>
         </div>
-      </div>
+        <br>
+        <div class="clearfix mb-20">
+          <div class="pull-left">
+            <h4 class="text-blue h4" id="pricehead"></h4>
+          </div>
+        </div>
+        <table class="table table-bordered" id="tabledetail">
+          <thead align="center">
+            <tr>
+              <th scope="col">ประเภท</th>
+              <th scope="col" onClick="menubar('table20')">ราคาขาย 20%</th>
+              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table20')">ค่าคอม 3%</th>
+              <th scope="col" onClick="menubar('table15')">ราคาขาย 15%</th>
+              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table15')">ค่าคอม 2%</th>
+              <th scope="col" onClick="menubar('table10')">ราคาขาย 10%</th>
+              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table10')">ค่าคอม 1%</th>
+            </tr>
+          </thead>
+          <tbody align="center">
+            <tr>
+              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ผู้ใหญ่</th>
+              <th scope="row">
+                <span class="badge badge-primary" id="adult_20">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-secondary" id="adult_15">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-success" id="adult_10">
+                </span>
+              </th>
+              <th scope="row">-</th>
+            </tr>
+            <tr id="tr_car">
+              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่ารถไป-กลับ ต่อท่าน</th>
+              <th scope="row">
+                <span class="badge badge-primary" id="sumcar_20">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-secondary" id="sumcar_15">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-success" id="sumcar_10">
+                </span>
+              </th>
+              <th scope="row">-</th>
+            </tr>
 
+            <tr id="tr_boat">
+              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าเรือไป-กลับ ต่อท่าน</th>
+              <th scope="row">
+                <span class="badge badge-primary" id="sumboat_20">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-secondary" id="sumboat_15">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-success" id="sumboat_10">
+                </span>
+              </th>
+              <th scope="row">-</th>
+            </tr>
+            <tr>
+              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าดำน้ำ ต่อท่าน</th>
+              <th scope="row">
+                <span class="badge badge-primary">
+                </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-secondary" </span>
+              </th>
+              <th scope="row">-</th>
+              <th scope="row">
+                <span class="badge badge-success">
+                </span>
+              </th>
+              <th scope="row">-</th>
+            </tr>
+            <tr style="color:red">
+              <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
+                ราคารวมผู้ใหญ่ต่อท่าน
+              <th scope="row">
+                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum20">
+                </span>
+              </th>
+              <th scope="row"><?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 3 / 100), 2) ?></th>
+              <th scope="row">
+                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum15">
+                  <?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15)), 2) ?>
+                </span>
+              </th>
+              <th scope="row"><?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * 2 / 100), 2) ?></th>
+              <th scope="row">
+                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum10">
+
+                  <?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10)), 2) ?>
+                </span>
+              </th>
+              <th scope="row"><?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * 1 / 100), 2) ?></th>
+            </tr>
+        </table>
+      </div>
+      <div class="footer-wrap pd-20 mb-20 card-box">Welcome Akira Lipe , Ananya Lipe , Thechic Lipe <a href="https://ananyalipe.com" target="_blank">แบบฟอร์มเช็คราคาห้องพักของแต่ละรีสอร์ท</a></div>
       <?php include "footer.php"; ?>
 </body>
 

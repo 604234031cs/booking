@@ -1687,7 +1687,6 @@ if ($older_children >= "1") {
                 </th>
                 <th scope="row">-</th>
 
-
               </tr>
               <?php if ($car != "") { ?>
                 <tr>
@@ -1788,7 +1787,7 @@ if ($older_children >= "1") {
                 <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
                   ราคารวมผู้ใหญ่ต่อท่าน
                 <th scope="row">
-                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum20">
                     <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)), 2) ?>
                   </span>
                 </th>

@@ -2,7 +2,6 @@
 session_start();
 header('Content-Type: text/html; charset=utf-8');
 require_once('tcpdf/tcpdf.php');
-
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', true);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("voucher รวม");
@@ -37,7 +36,7 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 
 
 // $connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
-$connect = mysqli_connect("localhost", "root", "", "booking");
+$connect = mysqli_connect("localhost", "root", "", "booking2");
 mysqli_set_charset($connect, "utf8");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
 $result1 = mysqli_query($connect, $sql1);
@@ -244,7 +243,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
 $obj_pdf->writeHTML($content);
 $name = 'Invoice-' . $id_booking . '.pdf';
-$obj_pdf->AddPage();
-$obj_pdf->Image('img/slips/413.jpg');
+// $obj_pdf->AddPage();
+// $obj_pdf->Image('img/slips/413.jpg');
 $obj_pdf->Output($name, 'I');
+
+?>
 
