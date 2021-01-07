@@ -33,9 +33,9 @@ $date = date("Y-m-d");
 
 
 // $date = "12-12-2020";
-
+require_once("connectdb.php");
 $connect = '';
-$connect = mysqli_connect("localhost", "root", "", "booking");   //("localhost", "istadium_01", "Aa123654", "istadium_01");
+// $connect = mysqli_connect("localhost", "root", "", "booking");   //("localhost", "istadium_01", "Aa123654", "istadium_01");
 $sql1 = "SELECT * FROM tb_report   WHERE id_booking ='" . $_GET["id_booking"] . "'";
 
 $result1 = mysqli_query($connect, $sql1);

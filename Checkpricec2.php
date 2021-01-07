@@ -487,7 +487,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
           </div>
           <div class="col-md-12 col-sm-12">
-            <input class="btn btn-primary" type="button" value="ตรวจสอบ" onclick="showDetailPrice()">
+            <input class="btn btn-primary" type="button" value="ตรวจสอบใหม่" onclick="showDetailPrice()">
           </div>
 
 
@@ -1466,6 +1466,21 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             let olderChildren15;
             let olderChildren10;
 
+            let showAllsum20 = 0;
+            let showAllsum15 = 0;
+            let showAllsum10 = 0;
+
+            let StringshowAllsum20="";
+            let StringshowAllsum15="";
+            let StringshowAllsum10="";
+
+            let showAllsumCom3 = 0;
+            let showAllsumCom2 = 0;
+            let showAllsumCom1 = 0;
+
+            let StringshowAllsumCom3="";
+            let StringshowAllsumCom2="";
+            let StringshowAllsumCom1="";
 
 
             let car20;
@@ -1499,6 +1514,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 let radiovalue1 = $("#diving1").val();
                 radiovalue1 = parseInt(radiovalue1);
                 diving_sum_20 = ((radiovalue1 * 20) / 100) + radiovalue1;
+
                 diving_sum_15 = ((radiovalue1 * 15) / 100) + radiovalue1;
                 diving_sum_10 = ((radiovalue1 * 10) / 100) + radiovalue1;
 
@@ -1518,6 +1534,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 let radiovalue2 = $("#diving2").val();
                 radiovalue2 = parseInt(radiovalue2);
                 diving_sum_20 = ((radiovalue2 * 20) / 100) + radiovalue2;
+
                 diving_sum_15 = ((radiovalue2 * 15) / 100) + radiovalue2;
                 diving_sum_10 = ((radiovalue2 * 10) / 100) + radiovalue2;
 
@@ -1539,6 +1556,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 let radiovalue3 = $("#diving3").val();
                 radiovalue3 = parseInt(radiovalue3);
                 diving_sum_20 = ((radiovalue3 * 20) / 100) + radiovalue3;
+
                 diving_sum_15 = ((radiovalue3 * 15) / 100) + radiovalue3;
                 diving_sum_10 = ((radiovalue3 * 10) / 100) + radiovalue3;
 
@@ -1560,9 +1578,11 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             function check_Car_Boat() {
 
               car20 = ((priceCar * 20) / 100) + priceCar;
+
               car15 = ((priceCar * 15) / 100) + priceCar;
               car10 = ((priceCar * 10) / 100) + priceCar;
               boat20 = ((priceBoat * 20) / 100) + priceBoat;
+
               boat15 = ((priceBoat * 15) / 100) + priceBoat;
               boat10 = ((priceBoat * 10) / 100) + priceBoat;
 
@@ -1604,6 +1624,8 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               }
             }
 
+
+
             function checkChielden() {
               let com2_3;
               let com2_2;
@@ -1613,22 +1635,15 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               $("#boy").html(num_Older_children + " คน");
               if (num_Older_children != 0) {
                 $("#tr_childen").show();
-                // alert(typeof parseInt(allsum_20))
-                // alert(typeof allsum_15)
-                // alert(typeof allsum_10)
-
-                // console.log("ทั้งหมด20:=>" + allsum_20);
-                // console.log("ทั้งหมด15:=>" + allsum_15);
-                // console.log("ทั้งหมด10:=>" + allsum_10);
-
-
-
                 olderChildren20 = (parseInt(allsum_20) * 70) / 100;
                 olderChildren15 = (parseInt(allsum_15) * 70) / 100;
                 olderChildren10 = (parseInt(allsum_10) * 70) / 100;
 
 
-
+                showAllsum20 += olderChildren20 * num_Older_children
+                showAllsum15 += olderChildren15 * num_Older_children
+                showAllsum10 += olderChildren10 * num_Older_children
+                // alert(showAllsum20)
                 // console.log("ทั้งหมดเด็ก20:=>" + olderChildren20);
                 // console.log("ทั้งหมดเด็ก15:=>" + olderChildren15);
                 // console.log("ทั้งหมดเด็ก10:=>" + olderChildren10);
@@ -1637,6 +1652,10 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 com2_3 = olderChildren20 * 0.03
                 com2_2 = olderChildren15 * 0.02
                 com2_1 = olderChildren10 * 0.01
+
+                showAllsumCom3 += com2_3 * num_Older_children
+                showAllsumCom2 += com2_2 * num_Older_children
+                showAllsumCom1 += com2_1 * num_Older_children
 
                 olderChildren20 = olderChildren20.toFixed(2)
                 olderChildren15 = olderChildren15.toFixed(2)
@@ -1671,8 +1690,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               $("#baby").html($('#child').val() + " คน")
               if ($('#child').val() != 0) {
                 $('#low3').show();
-                // low3
-
               } else {
                 $('#low3').hide();
               }
@@ -1681,7 +1698,26 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             }
 
 
-            function sumAult(s20, s15, s10) {
+            function fomat() {
+
+              showAllsum20 = showAllsum20.toFixed(2);
+              showAllsum15 = showAllsum15.toFixed(2);
+              showAllsum10 = showAllsum10.toFixed(2);
+
+              StringshowAllsum20 = showAllsum20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              StringshowAllsum15 = showAllsum15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              StringshowAllsum10 = showAllsum10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+              showAllsumCom3 = showAllsumCom3.toFixed(2);
+              showAllsumCom2 = showAllsumCom2.toFixed(2);
+              showAllsumCom1 = showAllsumCom1.toFixed(2);
+
+              StringshowAllsumCom3 = showAllsumCom3.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              StringshowAllsumCom2 = showAllsumCom2.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              StringshowAllsumCom1 = showAllsumCom1.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+            }
+
+            function sumAult(s20, s15, s10, numadult) {
               // alert("รถ");
               //
               let com3
@@ -1738,10 +1774,21 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 }
               }
 
+              showAllsum20 += allsum_20 * numadult;
+              showAllsum15 += allsum_15 * numadult;
+              showAllsum10 += allsum_10 * numadult;
+
               com3 = allsum_20 * 0.03;
               com2 = allsum_15 * 0.02;
               com1 = allsum_10 * 0.01;
+
+              showAllsumCom3 = com3 * numadult;
+              showAllsumCom2 = com2 * numadult;
+              showAllsumCom1 = com1 * numadult;
+
+              // alert(showAllsum20)
               checkChielden();
+
               allsum_20 = allsum_20.toFixed(2);
               allsum_15 = allsum_15.toFixed(2);
               allsum_10 = allsum_10.toFixed(2);
@@ -1749,6 +1796,8 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               com3 = com3.toFixed(2);
               com2 = com2.toFixed(2);
               com1 = com1.toFixed(2);
+
+
 
               allsum_20 = allsum_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
               allsum_15 = allsum_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -1766,10 +1815,17 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             }
 
             function showDetailPrice() {
+              showAllsum20 = 0;
+              showAllsum15 = 0;
+              showAllsum10 = 0;
+
+              showAllsumCom3 = 0;
+              showAllsumCom2 = 0;
+              showAllsumCom1 = 0;
               checkRadioDiving();
               check_Car_Boat();
               checkChild();
-              // $(".detail").empty();
+
               $('.detail').show();
               $('#aftershow').show();
               $('#table20').hide();
@@ -1852,7 +1908,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                   let sum_15 = sum15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                   let sum_10 = sum10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
-                  sumAult(sum20, sum15, sum10);
+                  sumAult(sum20, sum15, sum10, numadult);
 
                   $("#adult_20").html(sum_20);
                   $("#adult_15").html(sum_15);
@@ -2033,15 +2089,18 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
           </div>
         </div>
+
+
         <script>
           function menubar(action) {
+            fomat();
             $("#table20").show();
-            $('#headcom').html("ราคา " + action)
             $('#headcom').html("ราคา " + action)
             let nameresort = $("#id option:selected").text();
             let nameroomtype = $("#name_roomtype option:selected").text();
             let numboy = $("#older_children").val()
-            // alert(nameresort);
+            let checkCar = $('#customCheckcar').prop("checked");
+            let checkBoat = $('#customCheckboat').prop("checked");
             $('#namreosrt').html(nameresort)
             $('#nameroomtype').html(nameroomtype)
             if (numboy != 0) {
@@ -2051,10 +2110,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             }
 
             if (action == "20%") {
-              car20;
-              let checkCar = $('#customCheckcar').prop("checked");
-              let checkBoat = $('#customCheckboat').prop("checked");
-              // #diving1
               if (checkCar == true) {
                 $('#tr_valcar').show();
                 $('#valcar').html(car20);
@@ -2068,8 +2123,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               } else {
                 $('#tr_valboat').hide();
               }
-
-
               for (let j = 1; j <= 3; j++) {
                 if ($("#diving" + j).prop("checked") == true) {
                   $("#valdiving").html(diving_sum_20);
@@ -2080,39 +2133,95 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               if ($("#diving1").prop("checked") != true && $("#diving2").prop("checked") != true && $("#diving3").prop("checked") != true) {
                 $("#tr_valdiving").hide();
               }
-              // sumcar_20
-              // sumcar_15
-              // sumcar_10
-              // diving_sum_20;
-              // diving_sum_15;
-              // diving_sum_10;
-              // car20;
-              // car15;
-              // car10;
-              // boat20;
-              // boat15;
-              // boat10;
-              // #diving1
+              let numadult = $('#adult').val()
+              $("#adultnum2").html($('#adult').val() + " คน");
+              $("#boy2").html($("#older_children").val() + " คน");
+              $("#baby2").html($('#child').val() + " คน");
+
+        
+
+              $("#showsum").html(StringshowAllsum20);
+              $("#valcom").html("ค่าคอมรม 3%");
+              $("#showsumcom").html(StringshowAllsumCom3);
 
             } else if (action == "15%") {
-              car15;
+              car20;
+              $("#valcom").html("ค่าคอมรม 2%");
+              if (checkCar == true) {
+                $('#tr_valcar').show();
+                $('#valcar').html(car15);
+              } else {
+                $('#tr_valcar').hide();
+              }
+              if (checkBoat == true) {
+                $('#tr_valboat').show();
+                $('#valboat').html(boat15);
+              } else {
+                $('#tr_valboat').hide();
+              }
+              for (let j = 1; j <= 3; j++) {
+                if ($("#diving" + j).prop("checked") == true) {
+                  $("#valdiving").html(diving_sum_15);
+                  $("#tr_valdiving").show();
+                  break;
+                }
+              }
+              if ($("#diving1").prop("checked") != true && $("#diving2").prop("checked") != true && $("#diving3").prop("checked") != true) {
+                $("#tr_valdiving").hide();
+              }
+
+              let numadult = $('#adult').val()
+              $("#adultnum2").html($('#adult').val() + " คน");
+              // alert(num_Older_children);
+              $("#boy2").html($("#older_children").val() + " คน");
+              $("#baby2").html($('#child').val() + " คน")
+
+             
+
+
+
+             
+            
+              $("#showsum").html(StringshowAllsum15);
+
+              $("#showsumcom").html(StringshowAllsumCom2);
+
             } else if (action == "10%") {
-              car10;
+              car20;
+              if (checkCar == true) {
+                $('#tr_valcar').show();
+                $('#valcar').html(car10);
+              } else {
+                $('#tr_valcar').hide();
+              }
+              if (checkBoat == true) {
+                $('#tr_valboat').show();
+                $('#valboat').html(boat10);
+              } else {
+                $('#tr_valboat').hide();
+              }
+              for (let j = 1; j <= 3; j++) {
+                if ($("#diving" + j).prop("checked") == true) {
+                  $("#valdiving").html(diving_sum_10);
+                  $("#tr_valdiving").show();
+                  break;
+                }
+              }
+              if ($("#diving1").prop("checked") != true && $("#diving2").prop("checked") != true && $("#diving3").prop("checked") != true) {
+                $("#tr_valdiving").hide();
+              }
+              let numadult = $('#adult').val()
+              $("#adultnum2").html($('#adult').val() + " คน");
+              // alert(num_Older_children);
+              $("#boy2").html($("#older_children").val() + " คน");
+              $("#baby2").html($('#child').val() + " คน")
+
+            
+              $("#showsum").html(StringshowAllsum10);
+              $("#valcom").html("ค่าคอมรม 1%");
+              $("#showsumcom").html(StringshowAllsumCom1);
 
             }
-            // if (action == 'table20') {
-            //   $('#table20').show();
-            //   $('#table15').hide();
-            //   $('#table10').hide();
-            // } else if (action == 'table15') {
-            //   $('#table20').hide();
-            //   $('#table15').show();
-            //   $('#table10').hide();;
-            // } else if (action == 'table10') {
-            //   $('#table20').hide();
-            //   $('#table15').hide();
-            //   $('#table10').show();
-            // }
           }
         </script>
 
@@ -2144,34 +2253,28 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 <th scope="row" id="valboat"></th>
               </tr>
               <tr id="tr_valdiving">
-                <th scope="row" id="vardiving">ค่าดำน้ำ</th>
-                <th scope="row"><?php echo number_format(($diving_sum_20), 2); ?></th>
+                <th scope="row">ค่าดำน้ำ</th>
+                <th scope="row" id="valdiving"></th>
               </tr>
               <tr>
+
                 <th scope="row">
                   จำนวน ผู้ใหญ่
-                  <span style="color:red;"> <?php echo $adult; ?>
-                    คน <br /></span>
+                  <span style="color:red;" id="adultnum2">
+                  </span><br>
                   จำนวน เด็ก อายุ 4-10 ปี
-                  <span style="color:red;"><?php echo $older_children; ?>
-                    คน <br /></span>
+                  <span style="color:red;" id="boy2">
+                    คน </span><br>
                   จำนวน เด็ก อายุ 0-3 ปี
-                  <span style="color:red;"> <?php echo $child; ?>
+                  <span style="color:red;" id="baby2">
                     คน</span>
                 </th>
-                <th scope="row" style="color:red;">
-                  <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 0.7) * $older_children), 2) ?>
-                  <!-- <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + (($older_20) * $older_children), 2) ?> -->
+                <th scope="row" style="color:red;" id="showsum">
                 </th>
               </tr>
               <tr>
-                <th scope="row">ค่าคอมรวม 3%</th>
-                <th scope="row">
-                  <?php
-                  $a = (($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 0.7) * $older_children);
-                  //  $a =($sum_20*$adult)+($older_children_20*$older_children)+(($sum_adult*($_REQUEST[ 'adult' ])+($_REQUEST[ 'older_children' ]*$sum)))
-                  ?>
-                  <?= number_format((($a) * 3 / 100), 2) ?>
+                <th scope="row" id="valcom"></th>
+                <th scope="row" id="showsumcom">
                 </th>
               </tr>
             </tbody>
