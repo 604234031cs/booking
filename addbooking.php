@@ -101,6 +101,7 @@ if ($objQuery === TRUE) {
     $ss = mysqli_fetch_assoc($re);
     $row  = mysqli_num_rows($re2);
     $resort_name = $ss['room_name'];
+    
     $ytsever = substr(date("Y") + 543, -2);
 
     if ($row <= 0) {
@@ -131,36 +132,36 @@ if ($objQuery === TRUE) {
 
 
 
-    // $Token = "3CE5IOOxiuntE6OtBxXAMAgkJjgcl01ibxvAQSZBjvp";
-    // // $Token = "etxmEbZ2cY5OvNGJtUS5dJcaR1gXVbdmpiJ0tuRCVTY";
-    // // $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nสถานะการชำระเงิน " . $d . "\nยอดเงินในการชำระ: " . $Sales . "\nติดต่อ: " . $phone . "\nInvoice: https://thechiclipe.com/form_resort/report5.php?id=" . $ss['id'];
-    // $message = "\nเลขที่ "  . $text  . "\nชื่อลูกค้า : " . $name . " \nโรงเเรมที่จอง : " . $room_name . "\nวันที่เช็คอิน : " . $checkin . "\nวันที่เช็คเอาท์ : " . $checkout . "\nสถานะการชำระเงิน : " . $d . "\nยอดเงินในการชำระ : " . number_format($Sales) . "\nติดต่อ : " . $phone . "\nInvoice : http://khemtis.com/booking/report5.php?id=" . $ss['id'];
+    $Token = "3CE5IOOxiuntE6OtBxXAMAgkJjgcl01ibxvAQSZBjvp";
+    // $Token = "etxmEbZ2cY5OvNGJtUS5dJcaR1gXVbdmpiJ0tuRCVTY";
+    // $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nสถานะการชำระเงิน " . $d . "\nยอดเงินในการชำระ: " . $Sales . "\nติดต่อ: " . $phone . "\nInvoice: https://thechiclipe.com/form_resort/report5.php?id=" . $ss['id'];
+    $message = "\nเลขที่ "  . $text  . "\nชื่อลูกค้า : " . $name . " \nโรงเเรมที่จอง : " . $room_name . "\nวันที่เช็คอิน : " . $checkin . "\nวันที่เช็คเอาท์ : " . $checkout . "\nสถานะการชำระเงิน : " . $d . "\nยอดเงินในการชำระ : " . number_format($Sales) . "\nติดต่อ : " . $phone . "\nInvoice : http://khemtis.com/booking/report5.php?id=" . $ss['id'];
 
-    // $lineapi = $Token; // ใส่ token key ที่ได้มา
-    // $mms = trim($message); // ข้อความที่ต้องการส่ง
+    $lineapi = $Token; // ใส่ token key ที่ได้มา
+    $mms = trim($message); // ข้อความที่ต้องการส่ง
 
-    // date_default_timezone_set("Asia/Bangkok");
-    // $chOne = curl_init();
-    // curl_setopt($chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
-    // // SSL USE 
-    // curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
-    // curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
-    // //POST 
-    // curl_setopt($chOne, CURLOPT_POST, 1);
-    // curl_setopt($chOne, CURLOPT_POSTFIELDS, "message=$mms");
-    // curl_setopt($chOne, CURLOPT_FOLLOWLOCATION, 1);
-    // $headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $lineapi . '',);
-    // curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
-    // curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
-    // $result = curl_exec($chOne);
-    // //Check error 
-    // if (curl_error($chOne)) {
-    //     echo "<script> alert(''error:'" . curl_error($chOne) . "');</script>";
-    // } else {
-    //     $result_ = json_decode($result, true);
-    //     // echo "status : ".$result_['status']; echo "message : ". $result_['message'];
-    // }
-    // curl_close($chOne);
+    date_default_timezone_set("Asia/Bangkok");
+    $chOne = curl_init();
+    curl_setopt($chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+    // SSL USE 
+    curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
+    //POST 
+    curl_setopt($chOne, CURLOPT_POST, 1);
+    curl_setopt($chOne, CURLOPT_POSTFIELDS, "message=$mms");
+    curl_setopt($chOne, CURLOPT_FOLLOWLOCATION, 1);
+    $headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $lineapi . '',);
+    curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($chOne);
+    //Check error 
+    if (curl_error($chOne)) {
+        echo "<script> alert(''error:'" . curl_error($chOne) . "');</script>";
+    } else {
+        $result_ = json_decode($result, true);
+        // echo "status : ".$result_['status']; echo "message : ". $result_['message'];
+    }
+    curl_close($chOne);
 
     // //------------------------------------end LINE----------------------------------------------
 

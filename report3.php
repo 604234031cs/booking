@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 header('Content-Type: text/html; charset=utf-8');
+header("Content-type: application/pdf");  
  require_once('tcpdf/tcpdf.php');  
       $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
       $obj_pdf->SetCreator(PDF_CREATOR);  
@@ -34,7 +35,7 @@ $obj_pdf->setCellPaddings($left = '0', $top = '0', $right = '0', $bottom = '0');
       
      
       //$connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
-      $connect = mysqli_connect("localhost", "root", "", "booking2");  
+      $connect = mysqli_connect("localhost", "root", "", "booking");  
       $sql1 = "SELECT * FROM tb_report   WHERE id ='".$_GET["id"]."' ";  
       $result1 = mysqli_query($connect, $sql1); 
       

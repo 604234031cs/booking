@@ -275,7 +275,7 @@ if ($older_children >= "1") {
                 <div class="form-group">
 
                   <label>
-                    <h4 class="text-blue h4">ที่พัก <?php echo $name_roomtype; ?></h4>
+                    <h4 class="text-blue h4">ที่พัก</h4>
                   </label>
                   <!-- <input type="text" name="name" class="form-control" value="<?php echo $name; ?>" readonly=""> -->
                   <select class="custom-select col-12" id="id" name="id" onchange="autoselect(this.value)">
@@ -1812,7 +1812,7 @@ if ($older_children >= "1") {
               
                 <tr style="color:red">
                 <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
-                ราคารวมเด็ก อายุ 4-10 ปีต่อทาน
+                ราคารวมเด็ก อายุ 4-10 ปีต่อท่าน
                 <th scope="row">
                   <span class="badge" style="background-color: red;border-radius:5px;color:#fff">
                     <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20)*0.7), 2) ?>
@@ -1870,12 +1870,12 @@ if ($older_children >= "1") {
               } ?>
               <?php if ($child != "" && $child != 0) { ?>
                 <tr style="color:red">
-                  <th scope="row" style="padding-left: 3%!important;text-align:left!important">ราคารวมเด็ก อายุ 0-3 ปีต่อทาน</th>
-                  <th scope="row"><span class="badge badge-primary">-</span></th>
+                  <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">ราคารวมเด็ก อายุ 0-3 ปีต่อท่าน</th>
+                  <th scope="row"> <span class="badge" style="background-color: red;border-radius:5px;color:#fff">-</span></th>
                   <th scope="row">-</th>
-                  <th scope="row"><span class="badge badge-secondary">-</span></th>
+                  <th scope="row"> <span class="badge" style="background-color: red;border-radius:5px;color:#fff">-</span></th>
                   <th scope="row">-</th>
-                  <th scope="row"><span class="badge badge-success">-</span></th>
+                  <th scope="row"> <span class="badge" style="background-color: red;border-radius:5px;color:#fff">-</span></th>
                   <th scope="row">-</th>
                 </tr>
 
@@ -2008,11 +2008,9 @@ if ($older_children >= "1") {
                 <td style="border-color:#fff!important"></td>
                 <td style="border-color:#fff!important"><input type="button" value="เลือก" style="width:100%;color:#000;font-size:20px;padding:3px!important" onClick="menubar('table10')"></td>
                 <td style="border-color:#fff!important"></td>
-
               </tr>
             </tbody>
           </table>
-
           <div>
             <div class="pull-center">
               <h5 class="text-blue h5">รายละเอียดค่าใช้จ่าย  จำนวน :  <span style="color: red;"> <?php echo $diff_result + 1; ?> วัน <?php echo $diff_result; ?> คืน </h5></span>
@@ -2054,7 +2052,6 @@ if ($older_children >= "1") {
                   <tr>
                     <th scope="row">ประเภทห้องพัก</th>
                     <th scope="row"><?php echo $results["name_roomtype"] ?></th>
-
                   </tr>
 
                   <?php if ($older_children != "" && $older_children != 0) { ?>
@@ -2068,7 +2065,14 @@ if ($older_children >= "1") {
                   <?php if ($car != "") { ?>
                     <tr>
                       <th scope="row">ค่ารถ</th>
-                      <th scope="row"><?php echo number_format(($car_sum_20), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                      $adultcarsum = $car_sum_20 * $adult;
+                      $boycar = ($car_sum_20 *0.7)* $older_children;
+                      $sumcar_20 = $adultcarsum +  $boycar ;
+                      echo number_format(($sumcar_20), 2); 
+                      ?>
+                      </th>
                     </tr>
                   <?php } else {
                   } ?>
@@ -2076,7 +2080,15 @@ if ($older_children >= "1") {
                   <?php if ($boat != "") { ?>
                     <tr>
                       <th scope="row">ค่าเรือ</th>
-                      <th scope="row"><?php echo number_format(($boat_sum_20), 2); ?></th>
+                      <th scope="row">
+
+                      <?php 
+                      $adultboatsum = $boat_sum_20 * $adult;
+                      $boyboat = ($boat_sum_20 * 0.7) * $older_children;
+                      $sumboat_20 = $adultboatsum +  $boyboat;
+                      echo number_format(($sumboat_20), 2); ?>
+                      
+                      </th>
                     </tr>
                   <?php } else {
                   } ?>
@@ -2084,7 +2096,12 @@ if ($older_children >= "1") {
                   <?php if ($diving != "") { ?>
                     <tr>
                       <th scope="row">ค่าดำน้ำ</th>
-                      <th scope="row"><?php echo number_format(($diving_sum_20), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                         $adultdivingsum = $diving_sum_20 * $adult;
+                         $boydiving = ($diving_sum_20 *0.7) *  $older_children;
+                         $sumdiving_20 = $adultdivingsum +  $boydiving;
+                      echo number_format(($sumdiving_20), 2); ?></th>
                     </tr>
                   <?php } else {
                   } ?>
@@ -2123,7 +2140,6 @@ if ($older_children >= "1") {
 
               <?php } else { ?>
                 <div class="col-md-12 col-sm-12" style="padding-top: 20px;">
-
                   <?php
                   $txtdata = "";
                   if ($car != "") {
@@ -2161,8 +2177,6 @@ if ($older_children >= "1") {
                   </form>
                 </div>
               <?php } ?>
-
-
             </div>
 
 
@@ -2199,7 +2213,17 @@ if ($older_children >= "1") {
                   <?php if ($car != "") { ?>
                     <tr>
                       <th scope="row">ค่ารถ</th>
-                      <th scope="row"><?php echo number_format(($car_sum_15), 2); ?></th>
+                      <th scope="row">
+                      
+                      <?php
+                         $adultcarsum = $car_sum_15 * $adult;
+                         $boycar = ($car_sum_15 *0.7)* $older_children;
+                         $sumcar_15 = $adultcarsum +  $boycar ;
+                        echo number_format(($sumcar_15), 2); 
+                      
+                      
+                      ?>
+                      </th>
 
 
                     </tr>
@@ -2209,7 +2233,13 @@ if ($older_children >= "1") {
                   <?php if ($boat != "") { ?>
                     <tr>
                       <th scope="row">ค่าเรือ</th>
-                      <th scope="row"><?php echo number_format(($boat_sum_15), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                         $adultdivingsum = $boat_sum_15 * $adult;
+                         $boydiving = ($boat_sum_15 *0.7) *  $older_children;
+                         $sumdiving_15 = $adultdivingsum +  $boydiving;
+                         echo number_format(($sumdiving_15), 2); 
+                      ?></th>
 
 
                     </tr>
@@ -2219,7 +2249,14 @@ if ($older_children >= "1") {
                   <?php if ($diving != "") { ?>
                     <tr>
                       <th scope="row">ค่าดำน้ำ</th>
-                      <th scope="row"><?php echo number_format(($diving_sum_15), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                       $adultdivingsum = $diving_sum_15 * $adult;
+                       $boydiving = ($diving_sum_15 *0.7) *  $older_children;
+                       $sumdiving_15 = $adultdivingsum +  $boydiving;
+                      echo number_format(($sumdiving_15), 2); 
+                      ?>
+                      </th>
 
 
                     </tr>
@@ -2332,7 +2369,15 @@ if ($older_children >= "1") {
                   <?php if ($car != "") { ?>
                     <tr>
                       <th scope="row">ค่ารถ</th>
-                      <th scope="row"><?php echo number_format(($car_sum_10), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                      $adultcarsum = $car_sum_10 * $adult;
+                      $boycar = ($car_sum_10 *0.7)* $older_children;
+                      $sumcar_10 = $adultcarsum +  $boycar ;
+
+                      echo number_format(($sumcar_10), 2); 
+                      ?>
+                      </th>
 
 
                     </tr>
@@ -2342,7 +2387,15 @@ if ($older_children >= "1") {
                   <?php if ($boat != "") { ?>
                     <tr>
                       <th scope="row">ค่าเรือ</th>
-                      <th scope="row"><?php echo number_format(($boat_sum_10), 2); ?></th>
+                      <th scope="row">
+                      <?php 
+                        $adultdivingsum = $boat_sum_10 * $adult;
+                        $boydiving = ($boat_sum_10 *0.7) *  $older_children;
+                        $sumdiving_10 = $adultdivingsum +  $boydiving;
+                      echo number_format(($sumdiving_10), 2); 
+                      ?>
+                      
+                      </th>
 
 
                     </tr>
@@ -2352,7 +2405,16 @@ if ($older_children >= "1") {
                   <?php if ($diving != "") { ?>
                     <tr>
                       <th scope="row">ค่าดำน้ำ</th>
-                      <th scope="row"><?php echo number_format(($diving_sum_10), 2); ?></th>
+                      <th scope="row">
+                      <?php
+
+                        $adultdivingsum = $diving_sum_10 * $adult;
+                        $boydiving = ($diving_sum_10 *0.7) *  $older_children;
+                        $sumdiving_10 = $adultdivingsum +  $boydiving;
+                       echo number_format(($sumdiving_10), 2); 
+
+                       ?>
+                       </th>
 
 
                     </tr>

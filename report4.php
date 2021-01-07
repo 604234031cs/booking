@@ -1,6 +1,7 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
+header("Content-type: application/pdf");  
 require_once('tcpdf/tcpdf.php');
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);

@@ -177,7 +177,8 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                     let cDay = "" + d.getDate();
                     let currDay = d.getMonth() + 1 + "/" + cDay.padStart(2, "0") + "/" + d.getFullYear();
 
-
+                    $('.detail').hide();
+                    $('#aftershow').hide();
 
                     // alert(diving1)
                     // alert(diving2)
@@ -1082,7 +1083,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
                         let dateField = widget.querySelector(".date-field");
                         let fullDate = `${cellText.textContent} ${month.longName} ${year} `
-                        console.log(dateField.id);
+                        // console.log(dateField.id);
                         if (dateField.id == 'type1-deadline') {
                           let c = new Date($('#type1-start').val());
                           let f = new Date(fullDate);
@@ -1100,10 +1101,11 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                           var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
                           let txt = "";
 
-                          // let diving1 = <?php echo $diving1 ?>;
-                          // let diving2 = <?php echo $diving2 ?>;
-                          // let diving3 = <?php echo $diving3 ?>;
+                          let diving1 = <?php echo $diving1 ?>;
+                          let diving2 = <?php echo $diving2 ?>;
+                          let diving3 = <?php echo $diving3 ?>;
                           // console.log(Difference_In_Days);
+
                           if (Difference_In_Days + 1 >= 4) {
                             $('.radio').empty();
                             $('.checkbox').empty();
@@ -1136,21 +1138,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                             $(".radio").append(txt);
                           }
                         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         updateDateField(e, fullDate, dateField);
                         updateSelData(e, dateField);
@@ -1469,30 +1456,326 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               })
             })
 
-            function showDetailPrice() {
-              // $(".detail").empty();
-              let dateStart = new Date($('#type1-start').val());
-              let dateEnd = new Date($('#type1-deadline').val());
 
-              let priceCar = '<?php echo $car_num1; ?>';
-              priceCar = parseInt(priceCar);
-              let priceBoat = '<?php echo $boat_num1; ?>';
-              priceBoat = parseInt(priceBoat);
-              let car20 = ((priceCar * 20) / 100) + priceCar;
-              let car15 = ((priceCar * 15) / 100) + priceCar;
-              let car10 = ((priceCar * 10) / 100) + priceCar;
-              let boat20 = ((priceBoat * 20) / 100) + priceBoat;
-              let boat15 = ((priceBoat * 15) / 100) + priceBoat;
-              let boat10 = ((priceBoat * 10) / 100) + priceBoat;
-              // alert(typeof priceCar)
-              // alert(typeof priceBoat)
-              // $boat_num1
-              // customCheckcar
-              // customCheckboat
+
+            let diving_sum_20;
+            let diving_sum_15;
+            let diving_sum_10;
+
+            let olderChildren20;
+            let olderChildren15;
+            let olderChildren10;
+
+
+
+            let car20;
+            let car15;
+            let car10;
+
+            let boat20;
+            let boat15;
+            let boat10;
+
+            let sum20
+            let sum15
+            let sum10
+
+            let allsum_20
+            let allsum_15
+            let allsum_10
+
+            let priceCar = '<?php echo $car_num1; ?>';
+            priceCar = parseInt(priceCar);
+            let priceBoat = '<?php echo $boat_num1; ?>';
+            priceBoat = parseInt(priceBoat);
+
+
+            function checkRadioDiving() {
+              let radioDiving1 = $('#diving1').prop("checked");
+              let radioDiving2 = $('#diving2').prop("checked");
+              let radioDiving3 = $('#diving3').prop("checked");
+              if (radioDiving1 == true) {
+                $("#tr_diving").show();
+                let radiovalue1 = $("#diving1").val();
+                radiovalue1 = parseInt(radiovalue1);
+                diving_sum_20 = ((radiovalue1 * 20) / 100) + radiovalue1;
+                diving_sum_15 = ((radiovalue1 * 15) / 100) + radiovalue1;
+                diving_sum_10 = ((radiovalue1 * 10) / 100) + radiovalue1;
+
+                let diving_sums_20 = diving_sum_20.toFixed(2);
+                let diving_sums_15 = diving_sum_15.toFixed(2);
+                let diving_sums_10 = diving_sum_10.toFixed(2);
+
+                diving_sums_20 = diving_sums_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_15 = diving_sums_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_10 = diving_sums_10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                $("#sumdiving_20").html(diving_sums_20);
+                $("#sumdiving_15").html(diving_sums_15);
+                $("#sumdiving_10").html(diving_sums_10);
+              } else if (radioDiving2 == true) {
+
+                $("#tr_diving").show();
+                let radiovalue2 = $("#diving2").val();
+                radiovalue2 = parseInt(radiovalue2);
+                diving_sum_20 = ((radiovalue2 * 20) / 100) + radiovalue2;
+                diving_sum_15 = ((radiovalue2 * 15) / 100) + radiovalue2;
+                diving_sum_10 = ((radiovalue2 * 10) / 100) + radiovalue2;
+
+                let diving_sums_20 = diving_sum_20.toFixed(2);
+                let diving_sums_15 = diving_sum_15.toFixed(2);
+                let diving_sums_10 = diving_sum_10.toFixed(2);
+
+                diving_sums_20 = diving_sums_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_15 = diving_sums_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_10 = diving_sums_10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+                $("#sumdiving_20").html(diving_sums_20);
+                $("#sumdiving_15").html(diving_sums_15);
+                $("#sumdiving_10").html(diving_sums_10);
+
+
+              } else if (radioDiving3 == true) {
+                $("#tr_diving").show();
+                let radiovalue3 = $("#diving3").val();
+                radiovalue3 = parseInt(radiovalue3);
+                diving_sum_20 = ((radiovalue3 * 20) / 100) + radiovalue3;
+                diving_sum_15 = ((radiovalue3 * 15) / 100) + radiovalue3;
+                diving_sum_10 = ((radiovalue3 * 10) / 100) + radiovalue3;
+
+                let diving_sums_20 = diving_sum_20.toFixed(2);
+                let diving_sums_15 = diving_sum_15.toFixed(2);
+                let diving_sums_10 = diving_sum_10.toFixed(2);
+
+                diving_sums_20 = diving_sums_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_15 = diving_sums_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                diving_sums_10 = diving_sums_10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                $("#sumdiving_20").html(diving_sums_20);
+                $("#sumdiving_15").html(diving_sums_15);
+                $("#sumdiving_10").html(diving_sums_10);
+              } else {
+                $("#tr_diving").hide();
+              }
+            }
+
+            function check_Car_Boat() {
+
+              car20 = ((priceCar * 20) / 100) + priceCar;
+              car15 = ((priceCar * 15) / 100) + priceCar;
+              car10 = ((priceCar * 10) / 100) + priceCar;
+              boat20 = ((priceBoat * 20) / 100) + priceBoat;
+              boat15 = ((priceBoat * 15) / 100) + priceBoat;
+              boat10 = ((priceBoat * 10) / 100) + priceBoat;
+
+              $("#com1").html(com1);
               let checkCar = $('#customCheckcar').prop("checked");
               let checkBoat = $('#customCheckboat').prop("checked");
-              // alert(checkCar);
-              // alert(checkBoat);
+
+              let chekDiving1 = $('#customCheck1').prop("checked");
+              let chekDiving2 = $('#customCheck2').prop("checked");
+              let chekDiving3 = $('#customCheck3').prop("checked");
+
+              if (checkCar != true) {
+                $("#tr_car").hide();
+              } else {
+                $("#tr_car").show();
+                car20 = car20.toFixed(2);
+                car15 = car15.toFixed(2);
+                car10 = car10.toFixed(2);
+                sum_car20 = car20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                sum_car15 = car15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                sum_car10 = car10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                $('#sumcar_20').html(sum_car20);
+                $('#sumcar_15').html(sum_car15);
+                $('#sumcar_10').html(sum_car10);
+              }
+              if (checkBoat != true) {
+                $("#tr_boat").hide();
+              } else {
+                $("#tr_boat").show();
+                boat20 = boat20.toFixed(2);
+                boat15 = boat15.toFixed(2);
+                boat10 = boat10.toFixed(2);
+                sum_boat20 = boat20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                sum_boat15 = boat15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                sum_boat10 = boat10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                $('#sumboat_20').html(sum_boat20);
+                $('#sumboat_15').html(sum_boat15);
+                $('#sumboat_10').html(sum_boat10);
+              }
+            }
+
+            function checkChielden() {
+              let com2_3;
+              let com2_2;
+              let com2_1;
+              let num_Older_children = $("#older_children").val();
+              // alert(num_Older_children);
+              $("#boy").html(num_Older_children + " คน");
+              if (num_Older_children != 0) {
+                $("#tr_childen").show();
+                // alert(typeof parseInt(allsum_20))
+                // alert(typeof allsum_15)
+                // alert(typeof allsum_10)
+
+                // console.log("ทั้งหมด20:=>" + allsum_20);
+                // console.log("ทั้งหมด15:=>" + allsum_15);
+                // console.log("ทั้งหมด10:=>" + allsum_10);
+
+
+
+                olderChildren20 = (parseInt(allsum_20) * 70) / 100;
+                olderChildren15 = (parseInt(allsum_15) * 70) / 100;
+                olderChildren10 = (parseInt(allsum_10) * 70) / 100;
+
+
+
+                // console.log("ทั้งหมดเด็ก20:=>" + olderChildren20);
+                // console.log("ทั้งหมดเด็ก15:=>" + olderChildren15);
+                // console.log("ทั้งหมดเด็ก10:=>" + olderChildren10);
+
+
+                com2_3 = olderChildren20 * 0.03
+                com2_2 = olderChildren15 * 0.02
+                com2_1 = olderChildren10 * 0.01
+
+                olderChildren20 = olderChildren20.toFixed(2)
+                olderChildren15 = olderChildren15.toFixed(2)
+                olderChildren10 = olderChildren10.toFixed(2)
+
+                com2_3 = com2_3.toFixed(2)
+                com2_2 = com2_2.toFixed(2)
+                com2_1 = com2_1.toFixed(2)
+
+
+
+                olderChildren20 = olderChildren20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                olderChildren15 = olderChildren15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                olderChildren10 = olderChildren10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+
+                $("#older_ch20").html(olderChildren20);
+                $("#older_ch15").html(olderChildren15);
+                $("#older_ch10").html(olderChildren10);
+
+                $("#com2_3").html(com2_3);
+                $("#com2_2").html(com2_2);
+                $("#com2_1").html(com2_1);
+
+              } else {
+                $("#tr_childen").hide();
+              }
+
+            }
+
+            function checkChild() {
+              $("#baby").html($('#child').val() + " คน")
+              if ($('#child').val() != 0) {
+                $('#low3').show();
+                // low3
+
+              } else {
+                $('#low3').hide();
+              }
+
+
+            }
+
+
+            function sumAult(s20, s15, s10) {
+              // alert("รถ");
+              //
+              let com3
+              let com2
+              let com1
+              let radioDiving1 = $('#diving1').prop("checked");
+              let radioDiving2 = $('#diving2').prop("checked");
+              let radioDiving3 = $('#diving3').prop("checked");
+              let checkCar = $('#customCheckcar').prop("checked");
+              let checkBoat = $('#customCheckboat').prop("checked");
+
+              let radiovalue1 = $("#diving1").val();
+              let radiovalue2 = $("#diving2").val();
+              let radiovalue3 = $("#diving3").val();
+
+              for (let i = 1; i <= 3; i++) {
+                if ($('#diving' + i).prop("checked") == true) {
+                  if (checkCar == true && checkBoat != true) {
+                    allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20)
+                    allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15)
+                    allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10)
+                  } else if (checkBoat == true && checkCar != true) {
+                    allsum_20 = parseInt(s20) + parseInt(boat20) + parseInt(diving_sum_20)
+                    allsum_15 = parseInt(s15) + parseInt(boat15) + parseInt(diving_sum_15)
+                    allsum_10 = parseInt(s10) + parseInt(boat10) + parseInt(diving_sum_10)
+                  } else if (checkCar != true && checkBoat != true) {
+                    allsum_20 = parseInt(s20) + parseInt(diving_sum_20)
+                    allsum_15 = parseInt(s15) + parseInt(diving_sum_15)
+                    allsum_10 = parseInt(s10) + parseInt(diving_sum_10)
+                  } else {
+                    allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20) + parseInt(boat20)
+                    allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15) + parseInt(boat15)
+                    allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10) + parseInt(boat10)
+                  }
+                }
+              }
+              if (radioDiving1 != true && radioDiving2 != true && radioDiving3 != true) {
+                if (checkCar == true && checkBoat != true) {
+                  allsum_20 = parseInt(s20) + parseInt(car20)
+                  allsum_15 = parseInt(s15) + parseInt(car15)
+                  allsum_10 = parseInt(s10) + parseInt(car10)
+                } else if (checkBoat == true && checkCar != true) {
+                  allsum_20 = parseInt(s20) + parseInt(boat20)
+                  allsum_15 = parseInt(s15) + parseInt(boat15)
+                  allsum_10 = parseInt(s10) + parseInt(boat10)
+                } else if (checkCar != true && checkBoat != true) {
+                  allsum_20 = parseInt(s20)
+                  allsum_15 = parseInt(s15)
+                  allsum_10 = parseInt(s10)
+                } else {
+                  allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(boat20)
+                  allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(boat15)
+                  allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(boat10)
+                }
+              }
+
+              com3 = allsum_20 * 0.03;
+              com2 = allsum_15 * 0.02;
+              com1 = allsum_10 * 0.01;
+              checkChielden();
+              allsum_20 = allsum_20.toFixed(2);
+              allsum_15 = allsum_15.toFixed(2);
+              allsum_10 = allsum_10.toFixed(2);
+
+              com3 = com3.toFixed(2);
+              com2 = com2.toFixed(2);
+              com1 = com1.toFixed(2);
+
+              allsum_20 = allsum_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              allsum_15 = allsum_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              allsum_10 = allsum_10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+
+              $("#sum20").html(allsum_20);
+              $("#sum15").html(allsum_15);
+              $("#sum10").html(allsum_10);
+              $("#com3").html(com3);
+              $("#com2").html(com2);
+              $("#com1").html(com1);
+
+
+            }
+
+            function showDetailPrice() {
+              checkRadioDiving();
+              check_Car_Boat();
+              checkChild();
+              // $(".detail").empty();
+              $('.detail').show();
+              $('#aftershow').show();
+              $('#table20').hide();
+
+              let dateStart = new Date($('#type1-start').val());
+              let dateEnd = new Date($('#type1-deadline').val());
               let ds = "" + dateStart.getDate();
               let ms = "" + dateStart.getMonth() + 1;
               let de = "" + dateEnd.getDate();
@@ -1508,9 +1791,12 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               var Difference_In_Time = date2.getTime() - date1.getTime();
               var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-              // console.log(id_roomtype);
-              // console.log(fullDateStart);
-              // console.log(fullDateEnd);
+              var aread = Difference_In_Days + 1;
+
+              var area1 = aread + " วัน " + Difference_In_Days + " คืน";
+
+              $("#daylive").html(area1)
+
               $.ajax({
                 type: "POST",
                 url: "getprice.php",
@@ -1521,10 +1807,44 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 },
                 dataType: 'html',
                 success: function(data) {
-                  let sum_price_room = parseInt(data);
-                  let sum20 = (((sum_price_room * 20) / 100) + sum_price_room);
-                  let sum15 = (((sum_price_room * 15) / 100) + sum_price_room);
-                  let sum10 = (((sum_price_room * 10) / 100) + sum_price_room);
+                  let sum_price_room1 = parseInt(data);
+                  let sum_price_room;
+                  let extrabed = "";
+                  if (numadult == 1) {
+                    sum_price_room = sum_price_room1;
+                    extrabed = '0';
+                  } else if (numadult % 2 == 0) {
+                    sum_price_room = sum_price_room1 * (numadult / 2);
+                    extrabed = '0';
+                  } else {
+                    if (numadult == 3) {
+                      sum_price_room = (((sum_price_room1) + (sum_price_room1 / 2)));
+                      extrabed = '1';
+                    } else if (numadult == 5) {
+                      sum_price_room = (((sum_price_room1 * 2) + (sum_price_room1 / 2)));
+                      extrabed = '1';
+                    } else if (numadult == 7) {
+                      sum_price_room = (((sum_price_room1 * 3) + (sum_price_room1 / 2)));
+                      extrabed = '1';
+                    } else if (numadult == 9) {
+                      sum_price_room = (((sum_price_room1 * 4) + (sum_price_room1 / 2)));
+                      extrabed = '1';
+                    } else if (numadult == 11) {
+                      sum_price_room = (((sum_price_room1 * 5) + (sum_price_room1 / 2)));
+                      extrabed = '1';
+                    }
+                  }
+                  if (numadult % 2 == 0) {
+                    bed = (numadult / 2);
+                    $('#numroom').html(bed + ' ห้อง')
+                  } else {
+                    bed = (numadult - 1) / 2;
+                    $('#numroom').html(bed + ' ห้อง เตียงเสริม 1 เตียง  ')
+                  }
+                  $("#adultnum").html(numadult + " คน");
+                  sum20 = (((sum_price_room * 20) / 100) + sum_price_room) / numadult;
+                  sum15 = (((sum_price_room * 15) / 100) + sum_price_room) / numadult;
+                  sum10 = (((sum_price_room * 10) / 100) + sum_price_room) / numadult;
                   sum20 = sum20.toFixed(2);
                   sum15 = sum15.toFixed(2);
                   sum10 = sum10.toFixed(2);
@@ -1532,161 +1852,333 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                   let sum_15 = sum15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                   let sum_10 = sum10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
+                  sumAult(sum20, sum15, sum10);
+
                   $("#adult_20").html(sum_20);
                   $("#adult_15").html(sum_15);
                   $("#adult_10").html(sum_10);
                 }
-
               });
-              if (checkCar != true) {
-                $("#tr_car").hide();
-              } else {
-                $("#tr_car").show();
-                car20 = car20.toFixed(2);
-                car15 = car15.toFixed(2);
-                car10 = car10.toFixed(2);
-                let sum_car20 = car20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                let sum_car15 = car15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                let sum_car10 = car10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                $('#sumcar_20').html(sum_car20);
-                $('#sumcar_15').html(sum_car15);
-                $('#sumcar_10').html(sum_car10);
-              }
-              if (checkBoat != true) {
-                $("#tr_boat").hide();
-              } else {
-                $("#tr_boat").show();
-                // let x1 = ((priceBoat * 20) / 100) + priceBoat;
-                // let x2 = ((priceBoat * 15) / 100) + priceBoat;
-                // let x3 = ((priceBoat * 10) / 100) + priceBoat;
-                boat20 = boat20.toFixed(2);
-                boat15 = boat15.toFixed(2);
-                boat10 = boat10.toFixed(2);
-                let sum_boat20 = boat20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                let sum_boat15 = boat15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                let sum_boat10 = boat10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                $('#sumboat_20').html(sum_boat20);
-                $('#sumboat_15').html(sum_boat15);
-                $('#sumboat_10').html(sum_boat10);
-              }
               $("#pricehead").html('ราคาคิดตามเปอร์เซ็นค่าคอม');
             }
           </script>
         </div>
         <br>
-        <div class="clearfix mb-20">
-          <div class="pull-left">
-            <h4 class="text-blue h4" id="pricehead"></h4>
+        <div class="detail">
+
+          <div class="clearfix mb-20">
+            <div class="pull-left">
+              <h4 class="text-blue h4" id="pricehead"></h4>
+            </div>
+          </div>
+          <table class="table table-bordered" id="tabledetail">
+            <thead align="center">
+              <tr>
+                <th scope="col">ประเภท</th>
+                <th scope="col" onClick="menubar('table20')">ราคาขาย 20%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table20')">ค่าคอม 3%</th>
+                <th scope="col" onClick="menubar('table15')">ราคาขาย 15%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table15')">ค่าคอม 2%</th>
+                <th scope="col" onClick="menubar('table10')">ราคาขาย 10%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table10')">ค่าคอม 1%</th>
+              </tr>
+            </thead>
+            <tbody align="center">
+              <tr>
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important">ผู้ใหญ่</th>
+                <th scope="row">
+                  <span class="badge badge-primary" id="adult_20">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-secondary" id="adult_15">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-success" id="adult_10">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+              </tr>
+              <tr id="tr_car">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่ารถไป-กลับ ต่อท่าน</th>
+                <th scope="row">
+                  <span class="badge badge-primary" id="sumcar_20">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-secondary" id="sumcar_15">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-success" id="sumcar_10">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+              </tr>
+
+              <tr id="tr_boat">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าเรือไป-กลับ ต่อท่าน</th>
+                <th scope="row">
+                  <span class="badge badge-primary" id="sumboat_20">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-secondary" id="sumboat_15">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-success" id="sumboat_10">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+              </tr>
+              <tr id="tr_diving">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าดำน้ำ ต่อท่าน</th>
+                <th scope="row">
+                  <span class="badge badge-primary" id="sumdiving_20">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-secondary" id="sumdiving_15"> </span>
+                </th>
+                <th scope="row">-</th>
+                <th scope="row">
+                  <span class="badge badge-success" id="sumdiving_10">
+                  </span>
+                </th>
+                <th scope="row">-</th>
+              </tr>
+              <tr style="color:red">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
+                  ราคารวมผู้ใหญ่ต่อท่าน
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum20">
+                  </span>
+                </th>
+                <th scope="row" id="com3"></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum15">
+                  </span>
+                </th>
+                <th scope="row" id="com2"></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum10">
+                  </span>
+                </th>
+                <th scope="row" id="com1"></th>
+              </tr>
+
+
+              <tr style="color:red" id="tr_childen">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
+                  ราคารวมเด็ก อายุ 4-10 ปีต่อทาน
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="older_ch20">
+                  </span>
+                </th>
+                <th scope="row" id="com2_3"></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="older_ch15">
+                  </span>
+                </th>
+                <th scope="row" id="com2_2"></th>
+                <th scope="row">
+                  <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="older_ch10">
+                  </span>
+                </th>
+                <th scope="row" id="com2_1"></th>
+              </tr>
+
+              <tr style="color:red" id="low3">
+                <th scope="row" style="padding-left: 3%!important;text-align:left!important">ราคารวมเด็ก อายุ 0-3 ปีต่อทาน</th>
+                <th scope="row"><span class="badge badge-primary">-</span></th>
+                <th scope="row">-</th>
+                <th scope="row"><span class="badge badge-secondary">-</span></th>
+                <th scope="row">-</th>
+                <th scope="row"><span class="badge badge-success">-</span></th>
+                <th scope="row">-</th>
+              </tr>
+              <tr>
+                <td style="border-color:#fff!important"></td>
+                <td style="border-color:#fff!important"><input type="button" value="เลือก" style="width:100%;color:#000;font-size:20px;padding:3px!important" onClick="menubar('20%')"></td>
+                <td style="border-color:#fff!important"></td>
+                <td style="border-color:#fff!important"><input type="button" value="เลือก" style="width:100%;color:#000;font-size:20px;padding:3px!important" onClick="menubar('15%')"></td>
+                <td style="border-color:#fff!important"></td>
+                <td style="border-color:#fff!important"><input type="button" value="เลือก" style="width:100%;color:#000;font-size:20px;padding:3px!important" onClick="menubar('10%')"></td>
+                <td style="border-color:#fff!important"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="aftershow">
+          <div class="pull-center">
+            <h5 class="text-blue h5">รายละเอียดค่าใช้จ่าย จำนวน : <span style="color: red;" id="daylive"></h5></span>
+            <h5 class="text-blue h5">จำนวนห้อง : <span style="color: red;" id="numroom">
+            </h5></span>
+            <h5 class="text-blue h5">
+
+              จำนวนผู้ใหญ่ : <span style="color: red;" id="adultnum"> คน</span>
+              <br>จำนวนเด็ก อายุ 4-10 ปี : <span style="color: red;" id="boy"><?php echo $older_children; ?> คน </span>
+              <br>จำนวนเด็ก อายุ 0-3 ปี : <span style="color: red;" id="baby"> <?php echo $child; ?> คน </span>
+            </h5>
+
           </div>
         </div>
-        <table class="table table-bordered" id="tabledetail">
-          <thead align="center">
-            <tr>
-              <th scope="col">ประเภท</th>
-              <th scope="col" onClick="menubar('table20')">ราคาขาย 20%</th>
-              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table20')">ค่าคอม 3%</th>
-              <th scope="col" onClick="menubar('table15')">ราคาขาย 15%</th>
-              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table15')">ค่าคอม 2%</th>
-              <th scope="col" onClick="menubar('table10')">ราคาขาย 10%</th>
-              <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table10')">ค่าคอม 1%</th>
-            </tr>
-          </thead>
-          <tbody align="center">
-            <tr>
-              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ผู้ใหญ่</th>
-              <th scope="row">
-                <span class="badge badge-primary" id="adult_20">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-secondary" id="adult_15">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-success" id="adult_10">
-                </span>
-              </th>
-              <th scope="row">-</th>
-            </tr>
-            <tr id="tr_car">
-              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่ารถไป-กลับ ต่อท่าน</th>
-              <th scope="row">
-                <span class="badge badge-primary" id="sumcar_20">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-secondary" id="sumcar_15">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-success" id="sumcar_10">
-                </span>
-              </th>
-              <th scope="row">-</th>
-            </tr>
+        <script>
+          function menubar(action) {
+            $("#table20").show();
+            $('#headcom').html("ราคา " + action)
+            $('#headcom').html("ราคา " + action)
+            let nameresort = $("#id option:selected").text();
+            let nameroomtype = $("#name_roomtype option:selected").text();
+            let numboy = $("#older_children").val()
+            // alert(nameresort);
+            $('#namreosrt').html(nameresort)
+            $('#nameroomtype').html(nameroomtype)
+            if (numboy != 0) {
+              $('#extrabed').show();
+            } else {
+              $('#extrabed').hide();
+            }
 
-            <tr id="tr_boat">
-              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าเรือไป-กลับ ต่อท่าน</th>
-              <th scope="row">
-                <span class="badge badge-primary" id="sumboat_20">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-secondary" id="sumboat_15">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-success" id="sumboat_10">
-                </span>
-              </th>
-              <th scope="row">-</th>
-            </tr>
-            <tr>
-              <th scope="row" style="padding-left: 3%!important;text-align:left!important">ค่าดำน้ำ ต่อท่าน</th>
-              <th scope="row">
-                <span class="badge badge-primary">
-                </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-secondary" </span>
-              </th>
-              <th scope="row">-</th>
-              <th scope="row">
-                <span class="badge badge-success">
-                </span>
-              </th>
-              <th scope="row">-</th>
-            </tr>
-            <tr style="color:red">
-              <th scope="row" style="padding-left: 3%!important;text-align:left!important;color:red">
-                ราคารวมผู้ใหญ่ต่อท่าน
-              <th scope="row">
-                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum20">
-                </span>
-              </th>
-              <th scope="row"><?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 3 / 100), 2) ?></th>
-              <th scope="row">
-                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum15">
-                  <?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15)), 2) ?>
-                </span>
-              </th>
-              <th scope="row"><?= number_format((($sum_15 + $car_sum_15 + $boat_sum_15 + $diving_sum_15) * 2 / 100), 2) ?></th>
-              <th scope="row">
-                <span class="badge" style="background-color: red;border-radius:5px;color:#fff" id="sum10">
+            if (action == "20%") {
+              car20;
+              let checkCar = $('#customCheckcar').prop("checked");
+              let checkBoat = $('#customCheckboat').prop("checked");
+              // #diving1
+              if (checkCar == true) {
+                $('#tr_valcar').show();
+                $('#valcar').html(car20);
+              } else {
+                $('#tr_valcar').hide();
+              }
 
-                  <?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10)), 2) ?>
-                </span>
-              </th>
-              <th scope="row"><?= number_format((($sum_10 + $car_sum_10 + $boat_sum_10 + $diving_sum_10) * 1 / 100), 2) ?></th>
-            </tr>
-        </table>
+              if (checkBoat == true) {
+                $('#tr_valboat').show();
+                $('#valboat').html(boat20);
+              } else {
+                $('#tr_valboat').hide();
+              }
+
+
+              for (let j = 1; j <= 3; j++) {
+                if ($("#diving" + j).prop("checked") == true) {
+                  $("#valdiving").html(diving_sum_20);
+                  $("#tr_valdiving").show();
+                  break;
+                }
+              }
+              if ($("#diving1").prop("checked") != true && $("#diving2").prop("checked") != true && $("#diving3").prop("checked") != true) {
+                $("#tr_valdiving").hide();
+              }
+              // sumcar_20
+              // sumcar_15
+              // sumcar_10
+              // diving_sum_20;
+              // diving_sum_15;
+              // diving_sum_10;
+              // car20;
+              // car15;
+              // car10;
+              // boat20;
+              // boat15;
+              // boat10;
+              // #diving1
+
+            } else if (action == "15%") {
+              car15;
+            } else if (action == "10%") {
+              car10;
+
+            }
+            // if (action == 'table20') {
+            //   $('#table20').show();
+            //   $('#table15').hide();
+            //   $('#table10').hide();
+            // } else if (action == 'table15') {
+            //   $('#table20').hide();
+            //   $('#table15').show();
+            //   $('#table10').hide();;
+            // } else if (action == 'table10') {
+            //   $('#table20').hide();
+            //   $('#table15').hide();
+            //   $('#table10').show();
+            // }
+          }
+        </script>
+
+
+
+        <div id="table20" style="height: 90%; display: none;">
+          <h4 class="text-blue h4" align="center" id="headcom"></h4>
+          <table class="table table-bordered">
+            <thead align="center">
+              <th scope="col">ชื่อรีสอร์ด</th>
+              <th scope="col" id="namreosrt"></th>
+            </thead>
+            <tbody align="center">
+              <tr>
+                <th scope="row">ประเภทห้องพัก</th>
+                <th scope="row" id="nameroomtype">
+                </th>
+              </tr>
+              <tr id="extrabed">
+                <th scope="row">เพิ่มเตียงเสริม</th>
+                <th scope="row">Extra Bed</th>
+              </tr>
+              <tr id="tr_valcar">
+                <th scope="row">ค่ารถ</th>
+                <th scope="row" id="valcar"></th>
+              </tr>
+              <tr id="tr_valboat">
+                <th scope="row">ค่าเรือ</th>
+                <th scope="row" id="valboat"></th>
+              </tr>
+              <tr id="tr_valdiving">
+                <th scope="row" id="vardiving">ค่าดำน้ำ</th>
+                <th scope="row"><?php echo number_format(($diving_sum_20), 2); ?></th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  จำนวน ผู้ใหญ่
+                  <span style="color:red;"> <?php echo $adult; ?>
+                    คน <br /></span>
+                  จำนวน เด็ก อายุ 4-10 ปี
+                  <span style="color:red;"><?php echo $older_children; ?>
+                    คน <br /></span>
+                  จำนวน เด็ก อายุ 0-3 ปี
+                  <span style="color:red;"> <?php echo $child; ?>
+                    คน</span>
+                </th>
+                <th scope="row" style="color:red;">
+                  <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 0.7) * $older_children), 2) ?>
+                  <!-- <?= number_format((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + (($older_20) * $older_children), 2) ?> -->
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">ค่าคอมรวม 3%</th>
+                <th scope="row">
+                  <?php
+                  $a = (($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * $adult) + ((($sum_20 + $car_sum_20 + $boat_sum_20 + $diving_sum_20) * 0.7) * $older_children);
+                  //  $a =($sum_20*$adult)+($older_children_20*$older_children)+(($sum_adult*($_REQUEST[ 'adult' ])+($_REQUEST[ 'older_children' ]*$sum)))
+                  ?>
+                  <?= number_format((($a) * 3 / 100), 2) ?>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
       </div>
       <div class="footer-wrap pd-20 mb-20 card-box">Welcome Akira Lipe , Ananya Lipe , Thechic Lipe <a href="https://ananyalipe.com" target="_blank">แบบฟอร์มเช็คราคาห้องพักของแต่ละรีสอร์ท</a></div>
       <?php include "footer.php"; ?>

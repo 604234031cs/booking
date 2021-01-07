@@ -11,7 +11,7 @@ $serverName  = "localhost";
 
 $userName	  = "root";
 $Password	  = "";
-$dbName	  = "booking2";
+$dbName	  = "booking";
 
 	$con = mysqli_connect($serverName,$userName,$Password,$dbName);
 

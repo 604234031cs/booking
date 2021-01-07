@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: text/html; charset=utf-8');
 require_once('tcpdf/tcpdf.php');
-
+header("Content-type: application/pdf");  
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("ใบประกัน");

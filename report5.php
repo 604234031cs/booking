@@ -1,6 +1,7 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
+header("Content-type: application/pdf");
 require_once('tcpdf/tcpdf.php');
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', true);
 $obj_pdf->SetCreator(PDF_CREATOR);
@@ -36,7 +37,7 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 
 
 // $connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
-$connect = mysqli_connect("localhost", "root", "", "booking2");
+$connect = mysqli_connect("localhost", "root", "", "booking");
 mysqli_set_charset($connect, "utf8");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
 $result1 = mysqli_query($connect, $sql1);
@@ -47,6 +48,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
     $sumcustomers = $row1['sum'] / $row1['customers'];
     $id_booking = $row1['id_booking'];
+    $img = $row1['slip'];
 
     if ($row1["report_status"] == '0') {
         $in = '';
@@ -238,14 +240,10 @@ while ($row1 = mysqli_fetch_array($result1)) {
 // $obj_pdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
 // $obj_pdf->WriteHTML($content,\Mpdf\HTMLParserMode::HTML_BODY);
 
-
-
-
+$slip = "<h2>สลิปเลขที่ " . $id_booking . " </h2>";
 $obj_pdf->writeHTML($content);
 $name = 'Invoice-' . $id_booking . '.pdf';
-// $obj_pdf->AddPage();
-// $obj_pdf->Image('img/slips/413.jpg');
-$obj_pdf->Output($name, 'I');
-
-?>
-
+$obj_pdf->AddPage();
+$obj_pdf->writeHTML($slip);
+$obj_pdf->Image('img/slips/' . $img, 55, 30, 100);
+return $obj_pdf->Output($name, 'I');
