@@ -254,7 +254,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         <h4 class="text-blue h4">ที่พัก</h4>
                                     </label>
                                     <select class="custom-select col-12" name="resort_name">
-                                        <option  required><?php echo $resort_name; ?></option>
+                                        <option required><?php echo $resort_name; ?></option>
                                         <?php
 
                                         $sql1 = "SELECT * FROM `tb_resort`";
@@ -562,9 +562,18 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         $timestamp1 = strtotime($today);
                                         $checkin = strtotime($results["checkin"]);
                                         if ($checkin <= $timestamp1) { ?>
-                                            <b> เข้าพักแล้ว</b>
+                                            <?php if ($results["report_status"] == 4) { ?>
+                                                <b style="color: red;">ยกเลิก</b>
+                                            <?php } else { ?>
+                                                <b> เข้าพักแล้ว</b>
+                                            <?php } ?>
                                         <?php } else { ?>
-                                            <b style="color: red;">ยังไม่เข้าพัก</b>
+                                            <?php if ($results["report_status"] == 4) { ?>
+                                                <b style="color: red;">ยกเลิก</b>
+                                            <?php } else { ?>
+                                                <b style="color: red;">ยังไม่เข้าพัก</b>
+                                            <?php } ?>
+
                                         <?php }
 
                                         ?>

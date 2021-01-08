@@ -8,7 +8,8 @@ error_reporting(0);
 
 
 
-
+// older_children
+// child
 $month =  date('m');
 $transaction_date =  date('d-m-Y');
 $name =  $_POST['name'];
@@ -17,8 +18,8 @@ $line =  $_POST['line'];
 $room_name =  $_POST['room_name'];
 $typser = $_POST['typser'];
 
-// echo $ch1 =  $_POST['older_children'];
-// echo $ch2 =  $_POST['child'];
+$ch1 =  $_POST['older_children'];
+$ch2 =  $_POST['child'];
 $package =  $_POST['package'];
 $number_of_rooms =  $_POST['number_of_rooms'];
 // $extrabed =  $_REQUEST['extrabed'];
@@ -86,10 +87,6 @@ $imageFileType = strtolower(pathinfo($uploaded_file, PATHINFO_EXTENSION));
 $strSQL = "INSERT INTO `tb_report` (`id`, `id_booking`, `month`, `transaction_date`, `name`, `phone`, `line`, `room_name`, `name_resort`, `package`, `number_of_rooms`, `extrabed`, `customers`, `checkin`, `checkout`, `Sales`, `deposit`, `sum`, `car`, `boat`, `diving`, `payment_status`, `occupancy_status`, `collection_date`, `com`, `commission_value`, `adult`, `insurance`, `slip`,`note`,`details`,`Byyy`,`noid_booking`,`report_status`,ch1,ch2,typ_ser,status_pay)  VALUES (NULL, '','$month',NOW(), '$name', '$phone', '$line', '$room_name','$name_roomtype', '$package', '$number_of_rooms','$extrabed', '$customers','$checkin2 ', '$checkout2' , '$Sales', '$deposit', '$sum', '$car', '$boat', '$diving', '1', '1', NOW(), '$com', '$commission_value' , '$adult', '$insurance', '$fileName','$note','$details','$Byyy','','$report_status','$ch1','$ch2','$typser',1);";
 
 
-
-
-
-
 $objQuery = mysqli_query($con, $strSQL);
 
 if ($objQuery === TRUE) {
@@ -101,7 +98,7 @@ if ($objQuery === TRUE) {
     $ss = mysqli_fetch_assoc($re);
     $row  = mysqli_num_rows($re2);
     $resort_name = $ss['room_name'];
-    
+
     $ytsever = substr(date("Y") + 543, -2);
 
     if ($row <= 0) {

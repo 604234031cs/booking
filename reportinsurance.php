@@ -38,7 +38,7 @@ $connect = '';
 // $connect = mysqli_connect("localhost", "root", "", "booking");   //("localhost", "istadium_01", "Aa123654", "istadium_01");
 $sql1 = "SELECT * FROM tb_report   WHERE id_booking ='" . $_GET["id_booking"] . "'";
 
-$result1 = mysqli_query($connect, $sql1);
+$result1 = mysqli_query($con, $sql1);
 // $row2 = mysqli_fetch_assoc($result1);
 
 
@@ -94,7 +94,7 @@ if ($noid_booking != null && $noid_booking != "") {
 }
 
 $sql1 = "SELECT * FROM tb_voucher   WHERE id_bookink ='$idb' AND status ='9'";
-$result2 = mysqli_query($connect, $sql1);
+$result2 = mysqli_query($con, $sql1);
 
 $content1 = ' <style>
 

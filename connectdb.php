@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Bangkok");
 
 	//ini_set('display_errors', 1);
-	error_reporting(~0);
+	error_reporting(0);
 
 $serverName  = "localhost";
 // $userName	  = "root";
@@ -11,7 +11,7 @@ $serverName  = "localhost";
 
 $userName	  = "root";
 $Password	  = "";
-$dbName	  = "booking2";
+$dbName	  = "booking";
 
 	$con = mysqli_connect($serverName,$userName,$Password,$dbName);
 

@@ -381,7 +381,7 @@ $typser = $_POST["typser"];
                                     $('#sum').val(n3);
 
                                     s = n3 - n2;
-                                    s =s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                                    s = s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                                     $('#deposit').val(s);
                                 }
                             }
@@ -481,7 +481,7 @@ $typser = $_POST["typser"];
 
 
                         <?php
-                        $sql = "SELECT resort_name FROM tb_resort where '$name'";
+                        $sql = "SELECT resort_name FROM tb_resort where $name ='$name'";
                         $query33 = mysqli_query($con, $sql);
                         $results33 = mysqli_fetch_assoc($query33);
                         // echo $results33['resort_name'];
@@ -491,7 +491,7 @@ $typser = $_POST["typser"];
 
 
                         <input hidden type="text" name="typser" value="<?php echo $typser; ?>">
-                        <input hidden type="text" name="room_name" id="room_name" value="<?php echo $results33['resort_name']; ?>" />
+                        <input hidden type="text" name="room_name" id="room_name" value="<?php echo $name ?>" />
                         <input hidden type="text" name="days" id="days" value="<?php echo $days; ?> " />
                         <input hidden type="text" name="name_roomtype" id="name_roomtype" value="<?php echo $name_roomtype ?>" />
                         <input hidden type="text" name="package" id="package" value="<?php echo $days; ?>" />

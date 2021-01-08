@@ -453,13 +453,6 @@ if ($type == "addresort") {
 	if ($a == true) {
 		echo json_encode(2);
 	}
-	echo "<div><script>
-			swal('สำเร็จ!','ได้ทำการยกเลิกเรียบร้อย', 'success')
-			.then(() => {
-				setTimeout(function(){ 
-					window.location.href='report.php'
-				}, 1000);
-			});</script></div>";
 }
 
 

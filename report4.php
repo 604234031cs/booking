@@ -38,7 +38,7 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 // $connect = mysqli_connect("localhost", "root", "", "booking");
 require_once("connectdb.php");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
-$result1 = mysqli_query($connect, $sql1);
+$result1 = mysqli_query($con, $sql1);
 
 
 $content = '';
@@ -56,7 +56,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
   }
 
   //  $sql2 = "  SELECT * FROM `tb_voucher` WHERE `id_bookink` LIKE '".$row1['id_booking']."' AND `status` LIKE '".$_GET["status"]."'"; 
-  $result2 = mysqli_query($connect, $sql2);
+  $result2 = mysqli_query($con, $sql2);
 
   while ($row2 = mysqli_fetch_array($result2)) {
 

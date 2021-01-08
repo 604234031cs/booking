@@ -1,9 +1,9 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
-header("Content-type: application/pdf");
+// header("Content-type: application/pdf");
 require_once('tcpdf/tcpdf.php');
-$obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', true);
+$obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("voucher รวม");
 $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -38,10 +38,12 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 
 // $connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
 // $connect = mysqli_connect("localhost", "root", "", "booking");
-require_once("connectdb.php");
-mysqli_set_charset($connect, "utf8");
+
+require_once('connectdb.php');
+
+// mysqli_set_charset($con, "utf8");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
-$result1 = mysqli_query($connect, $sql1);
+$result1 = mysqli_query($con, $sql1);
 
 
 $content = '';
@@ -159,7 +161,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
     <tr>
       <td width="25%" ><p style="font-size: 1em;color:black">ทริปเที่ยว  :<br>Trip :</p></td>
       <td width="25%" ><table  ><tr><td><b style="font-size: 1.2em;color:black"> ' . $row1['adult'] . '</b></td></tr></table></td>
-      <td width="25%" style="background-color: #DCDCDC" ><p style="font-size: 1em;color:black">เด็ก อายุ 4-10 ปี :<br>Age for 4-10 Yrs:</p></td>
+      <td width="25%" style="background-color: #DCDCDC" ><p style="font-size: 1em;color:black">เด็ก อายุ 4-10 ปี :<br>Age for 4-10 Yrs : </p></td>
       <td width="25%" style="background-color: #DCDCDC" ><table  style="border:solid 1px #fff;padding:3px;"><tr><td><b style="font-size: 1.2em;color:black">' . $ch1 . '</b></td></tr></table></td>
     </tr>
     
@@ -167,7 +169,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
         <td width="25%" ><p style="font-size: 1em;color:black">บริการโดย :<br>Trip By :</p></td>
         <td width="25%" ><table  ><tr><td><b style="font-size: 1.2em;color:black"> ' . $row1['Byyy'] . '</b></td></tr></table></td>
         <td width="25%" style="background-color: #DCDCDC" ><p style="font-size: 1em;color:black">
-เด็ก อายุ 0-3 ปี :<br>Age for 0-3 Yrs:</p></td>
+เด็ก อายุ 0-3 ปี :<br>Age for 0-3 Yrs : </p></td>
         <td width="25%" style="background-color: #DCDCDC" ><table  style="border:solid 1px #fff;padding:3px;"><tr><td><b style="font-size: 1.2em;color:black">' . $ch2 . '</b></td></tr></table></td>
     </tr>
 </table>
@@ -198,7 +200,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
      <table class="first" cellpadding="4" cellspacing="3" style="width:100%">
     <tr style="background-color: #DCDCDC">
         <td width="11.75%" style="background-color:#fff"><b style="font-size: 1em;color:black">รายละเอียดอื่น   :</b></td>
-        <td width="88.25%" ></td>
+        <td width="88.25%" >'.$row1['details'].'</td>
     </tr>
 </table>
 <br>

@@ -1449,6 +1449,7 @@ if ($older_children >= "1") {
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
+                    <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
@@ -1456,7 +1457,7 @@ if ($older_children >= "1") {
                     <option value="9">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
-                    <option value="12">12</option>
+                    <option value="11">12</option>
                   </select>
                 </div>
               </div>
@@ -2484,7 +2485,7 @@ if ($older_children >= "1") {
                     <input hidden type="text" name="diving_num" id="diving_num" value="<?php echo $diving_num; ?>" />
                     <input hidden type="text" name="com" id="com" value="1%" />
                     <input hidden type="text" name="insurance" id="insurance" value="<?php echo $insurance_num; ?>">
-                    <input hidden type="text" name="extrabed" id="extrabed" value="<?php echo $extrabed; ?>" />
+                    <input  type="text" name="extrabed" id="extrabed" value="<?php echo $extrabed; ?>" />
                     <input class="btn btn-primary" type="submit" value="BOOKING" />
 
                   </form>
