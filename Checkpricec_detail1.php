@@ -189,9 +189,6 @@ if ($older_children >= "1") {
       $sql = "SELECT * FROM `tb_roomtype` WHERE `id` = '" . $name_roomtype . "'";
       $query = mysqli_query($con, $sql);
       while ($results = mysqli_fetch_assoc($query)) {
-
-
-
         $source = $Checkin;
         $date = new DateTime($source);
         $date_checkin_m = $date->format('m');
@@ -199,7 +196,6 @@ if ($older_children >= "1") {
         $diff = $diff_result - 1;
         $arrDate = [];
         for ($i = 0; $i <= $diff; $i++) {
-
 
           array_push($arrDate,  date("Y-m-d", strtotime("+$i days", strtotime($Checkin))));
           $datedate55 = date("Y-m-d", strtotime("+$diff days", strtotime($Checkin)));
@@ -210,7 +206,7 @@ if ($older_children >= "1") {
             $sum_price_room1 += $results55["price_room"];
           }
         }
-
+      
         $sum_price_room;     // ค่าทั้งหมด
         //print_r($arrDate);
         //echo $date_checkin_d;
@@ -219,7 +215,7 @@ if ($older_children >= "1") {
 
 
         if ($adult == 1) {
-          $sum_price_room  =  $sum_price_room1;
+          echo $sum_price_room  =  $sum_price_room1;
           $extrabed =  '0';
         } else if ($adult % 2 == 0) {
           $sum_price_room  =  $sum_price_room1 * ($adult / 2);
@@ -269,13 +265,13 @@ if ($older_children >= "1") {
         </script>
 
         <div class="pd-20 card-box mb-30">
-          <form action="Checkpricec_detail.php" method="post">
+          <form action="Checkpricec_detail1.php" method="post">
             <div class="row" style="padding-top: 35px;padding-bottom: 20px;">
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
 
                   <label>
-                    <h4 class="text-blue h4">ที่พัก</h4>
+                    <h4 class="text-blue h4">ที่พัก <?php echo $sum_price_room; ?></h4>
                   </label>
                   <!-- <input type="text" name="name" class="form-control" value="<?php echo $name; ?>" readonly=""> -->
                   <select class="custom-select col-12" id="id" name="id" onchange="autoselect(this.value)">

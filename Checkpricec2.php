@@ -77,9 +77,9 @@ $diving3 = $results33["price"];
       <div class="pd-20 card-box mb-30">
 
         <?php if ($_POST['display'] == "block") { ?>
-          <form action="Checkpricec.php" method="post" style="display: none;" name="form">
+          <form action="Checkpricec2.php" method="post" style="display: none;" name="form">
           <?php } else { ?>
-            <form action="Checkpricec.php" method="post">
+            <form action="Checkpricec2.php" method="post">
             <?php } ?>
 
             <div class="col-md-6 col-sm-12">
@@ -113,9 +113,9 @@ $diving3 = $results33["price"];
               $id_tb_resort = $_POST['id'];
 
             ?>
-              <form action="Checkpricec_detail.php" method="post">
+              <form action="Checkpricec_detail1.php" method="post">
               <?php } else { ?>
-                <form action="Checkpricec_detail.php" method="post" style="display: none;">
+                <form action="Checkpricec_detail1.php" method="post" style="display: none;">
                 <?php } ?>
 
                 <div class="row" style="padding-top: 35px;">

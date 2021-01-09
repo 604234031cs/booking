@@ -163,7 +163,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               <div id="id_startCalendar" class="calendar-widget default-today" data-next="#id_deadlineCalendar" date-min="today" tabindex="-1">
                 <div class="input-wrapper">
                   <label for="type1-start">Starting Date</label>
-                  <input class="date-field form-control" id="type1-start" type="text" placeholder="Starting Date" name="Checkin" onchange="autotwodate()">
+                  <input class="date-field form-control" id="type1-start" type="text" placeholder="Starting Date" name="Checkin">
                 </div>
                 <script>
                   let diving1 = <?php echo $diving1 ?>;
@@ -1077,33 +1077,34 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
                       cell.addEventListener("click", function(e) {
                         e.stopPropagation();
-
                         clearSelCell(calendar.closest(".dual-calendar"));
                         cell.classList.add("selected"); //change the cell state to active
-
                         let dateField = widget.querySelector(".date-field");
                         let fullDate = `${cellText.textContent} ${month.longName} ${year} `
-                        // console.log(dateField.id);
+                        // alert(fullDate);
+                        let c = new Date($('#type1-start').val());
+                        let f = new Date(fullDate);
+                        let cDay = "" + c.getDate();
+                        let fDay = "" + f.getDate();
+                        let cMonth = "" + c.getMonth() + 1;
+                        let fMonth = "" + f.getMonth() + 1;
+                        let feturDay = fMonth.padStart(2, "0") + "/" + fDay.padStart(2, "0") + "/" + f.getFullYear();
+                        let currenDay = cMonth.padStart(2, "0") + "/" + cDay.padStart(2, "0") + "/" + c.getFullYear();
+
+
+
+                        var date1 = new Date(currenDay);
+                        var date2 = new Date(feturDay);
+                        var Difference_In_Time = date2.getTime() - date1.getTime();
+                        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+                        let txt = "";
+
+                        let diving1 = <?php echo $diving1 ?>;
+                        let diving2 = <?php echo $diving2 ?>;
+                        let diving3 = <?php echo $diving3 ?>;
                         if (dateField.id == 'type1-deadline') {
-                          let c = new Date($('#type1-start').val());
-                          let f = new Date(fullDate);
-                          let cDay = "" + c.getDate();
-                          let fDay = "" + f.getDate();
-                          let cMonth = "" + c.getMonth() + 1;
-                          let fMonth = "" + f.getMonth() + 1;
-                          let feturDay = fMonth.padStart(2, "0") + "/" + fDay.padStart(2, "0") + "/" + f.getFullYear();
-                          let currenDay = cMonth.padStart(2, "0") + "/" + cDay.padStart(2, "0") + "/" + c.getFullYear();
-                          // console.log(currenDay);
-                          var date1 = new Date(currenDay);
+                          // console.log(dateField.id);
 
-                          var date2 = new Date(feturDay);
-                          var Difference_In_Time = date2.getTime() - date1.getTime();
-                          var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-                          let txt = "";
-
-                          let diving1 = <?php echo $diving1 ?>;
-                          let diving2 = <?php echo $diving2 ?>;
-                          let diving3 = <?php echo $diving3 ?>;
                           // console.log(Difference_In_Days);
 
                           if (Difference_In_Days + 1 >= 4) {
@@ -1137,6 +1138,23 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                             txt += "<button type='button' id='clearradio'onclick='clearRadio()' class='btn btn-warning form-control' style='color:#fff'>ยกเลิกดำน้ำ</button>";
                             $(".radio").append(txt);
                           }
+                        } else {
+                          $('.radio').empty();
+                          $('.checkbox').empty();
+                          txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                          txt += " <div class='custom-control custom-radio mb-5'>";
+                          txt += "<input type='radio' id='diving1' name='diving' class='custom-control-input' value='" + diving1 + "'>";
+                          txt += "<label class='custom-control-label' for='diving1'>ดำน้ำโซนใน</label></div>";
+                          txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                          txt += " <div class='custom-control custom-radio mb-5'>";
+                          txt += "<input type='radio' id='diving2' name='diving' class='custom-control-input' value='" + diving2 + "'>";
+                          txt += "<label class='custom-control-label' for='diving2'>ดำน้ำโซนนอก</label></div>";
+                          txt += "<input type='text' id='statusdiving' name='statusdiving' value='' hidden>";
+                          txt += "<div class='custom-control custom-radio mb-5'>";
+                          txt += "<input type='radio' id='diving3' name='diving' class='custom-control-input' value='" + diving3 + "'>";
+                          txt += "<label class='custom-control-label' for='diving3'>ดำน้ำโซนใน + โซนนอก</label></div>";
+                          txt += "<button type='button' id='clearradio'onclick='clearRadio()' class='btn btn-warning form-control' style='color:#fff'>ยกเลิกดำน้ำ</button>";
+                          $(".radio").append(txt);
                         }
 
                         updateDateField(e, fullDate, dateField);
@@ -1347,14 +1365,11 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               var mkDay = new String(day)
               var year = currDate.getFullYear();
               var month = monthNames[currDate.getMonth()];
-
               // const nextDate = new Date(nextDateField.value);
-
               var full2day = mkDay + " " + month + " " + year;
-              // console.log("2 วันถัดมา" + full2day);
               // // dateField.value = mkDay + " " + month + " " + year;
               // // nextDateField.value = dateField.value;
-
+              // alert(full2day)
               if (nextDateField.value < dateField.value) {
                 // console.log("LL");
                 // dateField.value = mkDay + " " + month + " " + year;
@@ -1366,6 +1381,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               }
               // console.log("วัน CheckOUT " + nextDateField.value);
               // // 
+
               nextWidget.click();
               nextWidget.focus();
               return;
@@ -1502,9 +1518,9 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             let aread;
 
             let priceCar = '<?php echo $car_num1; ?>';
-            priceCar = parseInt(priceCar);
+            priceCar = parseFloat(priceCar);
             let priceBoat = '<?php echo $boat_num1; ?>';
-            priceBoat = parseInt(priceBoat);
+            priceBoat = parseFloat(priceBoat);
 
 
             function checkRadioDiving() {
@@ -1515,7 +1531,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               if (radioDiving1 == true) {
                 $("#tr_diving").show();
                 let radiovalue1 = $("#diving1").val();
-                radiovalue1 = parseInt(radiovalue1);
+                radiovalue1 = parseFloat(radiovalue1);
                 diving_sum_20 = ((radiovalue1 * 20) / 100) + radiovalue1;
 
                 diving_sum_15 = ((radiovalue1 * 15) / 100) + radiovalue1;
@@ -1535,7 +1551,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
                 $("#tr_diving").show();
                 let radiovalue2 = $("#diving2").val();
-                radiovalue2 = parseInt(radiovalue2);
+                radiovalue2 = parseFloat(radiovalue2);
 
                 diving_sum_20 = ((radiovalue2 * 20) / 100) + radiovalue2;
                 diving_sum_15 = ((radiovalue2 * 15) / 100) + radiovalue2;
@@ -1557,7 +1573,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               } else if (radioDiving3 == true) {
                 $("#tr_diving").show();
                 let radiovalue3 = $("#diving3").val();
-                radiovalue3 = parseInt(radiovalue3);
+                radiovalue3 = parseFloat(radiovalue3);
                 diving_sum_20 = ((radiovalue3 * 20) / 100) + radiovalue3;
 
                 diving_sum_15 = ((radiovalue3 * 15) / 100) + radiovalue3;
@@ -1674,8 +1690,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               }
             }
 
-
-
             function checkChielden() {
               let com2_3;
               let com2_2;
@@ -1687,10 +1701,9 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               if (num_Older_children != 0) {
                 $("#tr_childen").show();
 
-                olderChildren20 = (parseInt(allsum_20) * 70) / 100;
-                olderChildren15 = (parseInt(allsum_15) * 70) / 100;
-                olderChildren10 = (parseInt(allsum_10) * 70) / 100;
-
+                olderChildren20 = (parseFloat(allsum_20) * 70) / 100;
+                olderChildren15 = (parseFloat(allsum_15) * 70) / 100;
+                olderChildren10 = (parseFloat(allsum_10) * 70) / 100;
 
                 showAllsum20Boy = olderChildren20 * num_Older_children;
                 showAllsum15Boy = olderChildren15 * num_Older_children;
@@ -1712,11 +1725,9 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 com2_2 = com2_2.toFixed(2)
                 com2_1 = com2_1.toFixed(2)
 
-
                 olderChildren20 = olderChildren20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                 olderChildren15 = olderChildren15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                 olderChildren10 = olderChildren10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-
 
                 $("#older_ch20").html(olderChildren20);
                 $("#older_ch15").html(olderChildren15);
@@ -1764,41 +1775,42 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 for (let i = 1; i <= 3; i++) {
                   if ($('#diving' + i).prop("checked") == true) {
                     if (checkCar == true && checkBoat != true) {
-                      allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20)
-                      allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15)
-                      allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10)
+                      allsum_20 = parseFloat(s20) + parseFloat(car20) + parseFloat(diving_sum_20)
+                      allsum_15 = parseFloat(s15) + parseFloat(car15) + parseFloat(diving_sum_15)
+                      allsum_10 = parseFloat(s10) + parseFloat(car10) + parseFloat(diving_sum_10)
                     } else if (checkBoat == true && checkCar != true) {
-                      allsum_20 = parseInt(s20) + parseInt(boat20) + parseInt(diving_sum_20)
-                      allsum_15 = parseInt(s15) + parseInt(boat15) + parseInt(diving_sum_15)
-                      allsum_10 = parseInt(s10) + parseInt(boat10) + parseInt(diving_sum_10)
+                      allsum_20 = parseFloat(s20) + parseFloat(boat20) + parseFloat(diving_sum_20)
+                      allsum_15 = parseFloat(s15) + parseFloat(boat15) + parseFloat(diving_sum_15)
+                      allsum_10 = parseFloat(s10) + parseFloat(boat10) + parseFloat(diving_sum_10)
                     } else if (checkCar != true && checkBoat != true) {
-                      allsum_20 = parseInt(s20) + parseInt(diving_sum_20)
-                      allsum_15 = parseInt(s15) + parseInt(diving_sum_15)
-                      allsum_10 = parseInt(s10) + parseInt(diving_sum_10)
+                      allsum_20 = parseFloat(s20) + parseFloat(diving_sum_20)
+                      allsum_15 = parseFloat(s15) + parseFloat(diving_sum_15)
+                      allsum_10 = parseFloat(s10) + parseFloat(diving_sum_10)
                     } else {
-                      allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20) + parseInt(boat20)
-                      allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15) + parseInt(boat15)
-                      allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10) + parseInt(boat10)
+                      allsum_20 = parseFloat(s20) + parseFloat(car20) + parseFloat(diving_sum_20) + parseFloat(boat20)
+                      allsum_15 = parseFloat(s15) + parseFloat(car15) + parseFloat(diving_sum_15) + parseFloat(boat15)
+                      allsum_10 = parseFloat(s10) + parseFloat(car10) + parseFloat(diving_sum_10) + parseFloat(boat10)
                     }
+                    break;
                   }
                 }
                 if (radioDiving1 != true && radioDiving2 != true && radioDiving3 != true) {
                   if (checkCar == true && checkBoat != true) {
-                    allsum_20 = parseInt(s20) + parseInt(car20)
-                    allsum_15 = parseInt(s15) + parseInt(car15)
-                    allsum_10 = parseInt(s10) + parseInt(car10)
+                    allsum_20 = parseFloat(s20) + parseFloat(car20)
+                    allsum_15 = parseFloat(s15) + parseFloat(car15)
+                    allsum_10 = parseFloat(s10) + parseFloat(car10)
                   } else if (checkBoat == true && checkCar != true) {
-                    allsum_20 = parseInt(s20) + parseInt(boat20)
-                    allsum_15 = parseInt(s15) + parseInt(boat15)
-                    allsum_10 = parseInt(s10) + parseInt(boat10)
+                    allsum_20 = parseFloat(s20) + parseFloat(boat20)
+                    allsum_15 = parseFloat(s15) + parseFloat(boat15)
+                    allsum_10 = parseFloat(s10) + parseFloat(boat10)
                   } else if (checkCar != true && checkBoat != true) {
-                    allsum_20 = parseInt(s20)
-                    allsum_15 = parseInt(s15)
-                    allsum_10 = parseInt(s10)
+                    allsum_20 = parseFloat(s20)
+                    allsum_15 = parseFloat(s15)
+                    allsum_10 = parseFloat(s10)
                   } else {
-                    allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(boat20)
-                    allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(boat15)
-                    allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(boat10)
+                    allsum_20 = parseFloat(s20) + parseFloat(car20) + parseFloat(boat20)
+                    allsum_15 = parseFloat(s15) + parseFloat(car15) + parseFloat(boat15)
+                    allsum_10 = parseFloat(s10) + parseFloat(car10) + parseFloat(boat10)
                   }
                 }
 
@@ -1829,32 +1841,34 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 $("#sum20").html(allsum_20);
                 $("#sum15").html(allsum_15);
                 $("#sum10").html(allsum_10);
+
                 $("#com3").html(com3);
                 $("#com2").html(com2);
                 $("#com1").html(com1);
 
               } else if (Difference_In_Days + 1 >= 4) {
                 if (checkCar == true && checkBoat != true) {
-                  allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20)
-                  allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15)
-                  allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10)
+                  allsum_20 = parseFloat(s20) + parseFloat(car20) + parseFloat(diving_sum_20)
+                  allsum_15 = parseFloat(s15) + parseFloat(car15) + parseFloat(diving_sum_15)
+                  allsum_10 = parseFloat(s10) + parseFloat(car10) + parseFloat(diving_sum_10)
                 } else if (checkBoat == true && checkCar != true) {
-                  allsum_20 = parseInt(s20) + parseInt(boat20) + parseInt(diving_sum_20)
-                  allsum_15 = parseInt(s15) + parseInt(boat15) + parseInt(diving_sum_15)
-                  allsum_10 = parseInt(s10) + parseInt(boat10) + parseInt(diving_sum_10)
+                  allsum_20 = parseFloat(s20) + parseFloat(boat20) + parseFloat(diving_sum_20)
+                  allsum_15 = parseFloat(s15) + parseFloat(boat15) + parseFloat(diving_sum_15)
+                  allsum_10 = parseFloat(s10) + parseFloat(boat10) + parseFloat(diving_sum_10)
                 } else if (checkCar != true && checkBoat != true) {
-                  allsum_20 = parseInt(s20) + parseInt(diving_sum_20)
-                  allsum_15 = parseInt(s15) + parseInt(diving_sum_15)
-                  allsum_10 = parseInt(s10) + parseInt(diving_sum_10)
+                  allsum_20 = parseFloat(s20) + parseFloat(diving_sum_20)
+                  allsum_15 = parseFloat(s15) + parseFloat(diving_sum_15)
+                  allsum_10 = parseFloat(s10) + parseFloat(diving_sum_10)
                 } else {
-                  allsum_20 = parseInt(s20) + parseInt(car20) + parseInt(diving_sum_20) + parseInt(boat20)
-                  allsum_15 = parseInt(s15) + parseInt(car15) + parseInt(diving_sum_15) + parseInt(boat15)
-                  allsum_10 = parseInt(s10) + parseInt(car10) + parseInt(diving_sum_10) + parseInt(boat10)
+                  allsum_20 = parseFloat(s20) + parseFloat(car20) + parseFloat(diving_sum_20) + parseFloat(boat20)
+                  allsum_15 = parseFloat(s15) + parseFloat(car15) + parseFloat(diving_sum_15) + parseFloat(boat15)
+                  allsum_10 = parseFloat(s10) + parseFloat(car10) + parseFloat(diving_sum_10) + parseFloat(boat10)
                 }
                 com3 = allsum_20 * 0.03;
                 com2 = allsum_15 * 0.02;
                 com1 = allsum_10 * 0.01;
                 checkChielden();
+
                 allsum_20 = allsum_20.toFixed(2);
                 allsum_15 = allsum_15.toFixed(2);
                 allsum_10 = allsum_10.toFixed(2);
@@ -1867,6 +1881,10 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 showAllsumCom2Ault = com2 * numadult
                 showAllsumCom1Ault = com1 * numadult
 
+                com3 = Math.round(com3 * 100) / 100;
+                com2 = Math.round(com2 * 100) / 100;
+                com1 = Math.round(com1 * 100) / 100;
+
                 com3 = com3.toFixed(2);
                 com2 = com2.toFixed(2);
                 com1 = com1.toFixed(2);
@@ -1874,7 +1892,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 allsum_20 = allsum_20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                 allsum_15 = allsum_15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                 allsum_10 = allsum_10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-
 
                 $("#sum20").html(allsum_20);
                 $("#sum15").html(allsum_15);
@@ -1903,13 +1920,20 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
               let dateStart = new Date($('#type1-start').val());
               let dateEnd = new Date($('#type1-deadline').val());
+              // alert(dateEnd)
+              let nms = dateStart.getMonth() + 1;
               let ds = "" + dateStart.getDate();
-              let ms = "" + dateStart.getMonth() + 1;
-              let de = "" + dateEnd.getDate();
-              let me = "" + dateEnd.getMonth() + 1;
+              let ms = "" + nms;
 
+              let de = "" + dateEnd.getDate();
+              let nme = dateEnd.getMonth() + 1;
+              let me = "" + nme;
+              // alert(nme)
               fullDateStart = dateStart.getFullYear() + "-" + ms.padStart(2, "0") + "-" + ds.padStart(2, "0");
               fullDateEnd = dateEnd.getFullYear() + "-" + me.padStart(2, "0") + "-" + de.padStart(2, "0");
+
+              // alert("Start:=>" + fullDateStart + "\nEnd=>" + fullDateEnd)
+
               let id_roomtype = $('#name_roomtype').val();
 
               var date1 = new Date(fullDateStart);
@@ -1918,6 +1942,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               var Difference_In_Time = date2.getTime() - date1.getTime();
               var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
+
               if (Difference_In_Days + 1 <= 3) {
                 checkRadioDiving();
               } else if (Difference_In_Days + 1 >= 4) {
@@ -1925,9 +1950,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
               }
               aread = Difference_In_Days + 1;
               var area1 = aread + " วัน " + Difference_In_Days + " คืน";
-
               $("#daylive").html(area1)
-
               $.ajax({
                 type: "POST",
                 url: "getprice.php",
@@ -1938,8 +1961,9 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                 },
                 dataType: 'html',
                 success: function(data) {
-                  let sum_price_room1 = parseInt(data);
+                  let sum_price_room1 = parseFloat(data);
                   let sum_price_room;
+                  // alert(sum_price_room1)
                   extrabed = "";
                   if (numadult == 1) {
                     sum_price_room = sum_price_room1;
@@ -1976,14 +2000,16 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                   sum20 = (((sum_price_room * 20) / 100) + sum_price_room) / numadult;
                   sum15 = (((sum_price_room * 15) / 100) + sum_price_room) / numadult;
                   sum10 = (((sum_price_room * 10) / 100) + sum_price_room) / numadult;
+                  sumAult(sum20, sum15, sum10, numadult, Difference_In_Days);
+
                   sum20 = sum20.toFixed(2);
                   sum15 = sum15.toFixed(2);
                   sum10 = sum10.toFixed(2);
+
                   let sum_20 = sum20.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                   let sum_15 = sum15.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                   let sum_10 = sum10.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
-                  sumAult(sum20, sum15, sum10, numadult, Difference_In_Days);
 
                   $("#adult_20").html(sum_20);
                   $("#adult_15").html(sum_15);
