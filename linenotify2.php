@@ -6,6 +6,7 @@ $mtsever = date("m");
 $ytsever = date("Y");
 $datecur = "" . $ytsever . "-" . "" . $mtsever . "-" . "" . $dtsever;
 $date = strtotime($datecur);
+
 $d = date("Y-m-d", strtotime("+1 day", strtotime($datecur)));
 $sql = "SELECT * FROM tb_report where  report_status = 3 and checkin ='$d'";
 $query = mysqli_query($con, $sql);
@@ -56,5 +57,5 @@ if ($num_rows > 0) {
         echo "message : " . $result_['message'];
     }
     curl_close($chOne);
-    // echo $message;
+    echo $message;
 }

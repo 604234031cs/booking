@@ -1,8 +1,10 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
-require_once('tcpdf/tcpdf.php');
 header("Content-type: application/pdf");  
+require_once('tcpdf/tcpdf.php');
+include('connectdb.php');
+
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("ใบประกัน");
@@ -26,14 +28,10 @@ $obj_pdf->AddPage();
 $image_file = K_PATH_IMAGES . 'viriyah-logo.png';
 $obj_pdf->Image($image_file, 18, 4, 100, '', 'png', '', 'c', false, 400, '', false, false, 0, false, false, false);
 
-
-
 $date = date("Y-m-d");
 
 
-
 // $date = "12-12-2020";
-require_once("connectdb.php");
 $connect = '';
 // $connect = mysqli_connect("localhost", "root", "", "booking");   //("localhost", "istadium_01", "Aa123654", "istadium_01");
 $sql1 = "SELECT * FROM tb_report   WHERE id_booking ='" . $_GET["id_booking"] . "'";

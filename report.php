@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php include "head.php";
+<?php
+ include "head.php";
 include_once('connectdb.php');
 session_start();
 error_reporting(0);
@@ -19,7 +20,6 @@ if ($_REQUEST['resort_name'] != "") {
         $date_end = $_REQUEST["date_end"];
     }
 } else {
-
     $all = 'all';
     $resort_name = 'โปรดเลือกที่พัก...';
     $date_star = '';
@@ -46,21 +46,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
 ?>
 
 <body>
-    <!-- 	
-    <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
     <?php include "header.php"; ?>
-
     <div class="main-container">
         <div class="pd-ltr-20">
             <div class="card-box pd-20 height-100-p mb-30">
@@ -76,7 +62,6 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                     </div>
                 </div>
             </div>
-
             <style>
                 #blah {
                     border-radius: 5px;
@@ -254,7 +239,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         <h4 class="text-blue h4">ที่พัก</h4>
                                     </label>
                                     <select class="custom-select col-12" name="resort_name">
-                                        <option required><?php echo $resort_name; ?></option>
+                                        <option value="" required><?php echo $resort_name; ?></option>
                                         <?php
 
                                         $sql1 = "SELECT * FROM `tb_resort`";
@@ -304,6 +289,22 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                             });
                         });
+
+                        // let id = $('#resortedit').val();
+                        // $.ajax({
+                        //     url: "ajaxdata.php?page=checkprice&&id=" + id,
+                        //     type: "GET",
+                        //     success: function(result) {
+                        //         let ajaxdata = JSON.parse(result);
+                        //         // console.log(ajaxdata);
+                        //         // $("#name_roomtype").empty();
+                        //         for (let i = 0; i < ajaxdata.length; i++) {
+                        //             // console.log(ajaxdata[i]);
+                        //             $("#name_roomtype").append("<option value=" + ajaxdata[i]['id'] + ">" + ajaxdata[i]['name_roomtype'] + "</option>");
+                        //         }
+                        //         // console.log(result);
+                        //     }
+                        // });
                     });
                 </script>
 
@@ -426,66 +427,103 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         modal.style.display = "none";
                                     }
 
-                                    function rightclick(id, datechekin, datecheckout, resort, roomtype, name, noid) {
+                                    $("#editbooking").on("hidden.bs.modal", function() {
+                                        $(".modal-body").html("");
+                                    });
+
+                                    function rightclick(id, datechekin, datecheckout, resort, roomtype, name, noid, phone) {
                                         // alert("id_booking:=>" + id + "\n" + "checkin:=>" + datechekin + "\n" + "checkout:=>" + datecheckout + "\n" + "resortname:=>" + resort + "\n" + "roomtype:=>" + roomtype + "\n" + "person:=>" + name + "\n" + "ref: => " + noid);
                                         let txt1 = "";
                                         let txt2 = "";
+                                        id_tb_report
                                         $("#editbooking").modal('show');
                                         $("#noidedit").val(noid);
+                                        $("#id_tb_report").val(id);
                                         $("#checkinedit").val(datechekin);
                                         $("#checkoutedit").val(datecheckout);
                                         $("#nameedit").val(name);
+                                        $("#phoneedit").val(phone);
+                                        $("#defualtresort").empty();
 
-                                        $("#defaultresort").val(resort)
-                                        $("#defaultresort").html(resort)
+                                        $("#defualtresort").val(resort)
+
+                                        let val2 = $("#defualtresort").val()
+
+                                        $("#defualtresort").html(resort)
+                                        $("#defualtresort").prop("selected", true)
+                                        // defualtresor
+                                        // $("#defualtroom").empty();
+                                        $("#defualtroom").val(roomtype)
+                                        let val = $("#defualtroom").val()
+
+
+                                        $("#roomedit").empty();
+                                        $("#roomedit").append("<option value='" + val + "'>" + val + "</option>");
+
+                                        // $("#defualtroom").append(roomtype)
                                         // txt1 = "<option>" + resort + "</option>";
                                         // txt2 = "<option>" + roomtype + "</option>";
-                                        $.ajax({
-                                            url: "ajaxdata.php?page=checkprice&&id=" + id,
-                                            type: "GET",
-                                            success: function(result) {
-                                                let ajaxdata = JSON.parse(result);
-                                                console.log(result);
-                                                // $("#name_roomtype").empty();
-                                                for (let i = 0; i < ajaxdata.length; i++) {
-                                                    // console.log(ajaxdata[i]);
-                                                    $("#roomedit").append("<option value=" + ajaxdata[i]['id'] + ">" + ajaxdata[i]['name_roomtype'] + "</option>");
-                                                }
-                                                // console.log(result);
-                                            }
-                                        });
+                                        // $.ajax({
+                                        //     url: "ajaxdata.php?page=checkprice&&id=" + id,
+                                        //     type: "GET",
+                                        //     success: function(result) {
+                                        //         let ajaxdata = JSON.parse(result);
+                                        //         console.log(result);
+                                        //         $("#roomedit").empty();
+                                        //         for (let i = 0; i < ajaxdata.length; i++) {
+                                        //             // console.log(ajaxdata[i]);
+                                        //             $("#roomedit").append("<option value=" + ajaxdata[i]['id'] + ">" + ajaxdata[i]['name_roomtype'] + "</option>");
+                                        //         }
+                                        //         // console.log(result);
+                                        //     }
+                                        // });
                                         // $("#resortedit").append(txt1)
                                         // $("#roomedit").append(txt2)
                                     }
 
-                                   
-// // name_roomtype
-// // resortedit
-// // roomedit
-// resortedit
-// roomedit
+                                    // // name_roomtype
+                                    // // resortedit
+                                    // // roomedit
+                                    // resortedit
+                                    // roomedit
 
-                                    // function autoselect(value) {
-                                    //     // console.log(value);
-                                    //     $.ajax({
-                                    //         url: "ajaxdata.php?page=checkprice&&id=" + value,
-                                    //         type: "GET",
-                                    //         success: function(result) {
-                                    //             let ajaxdata = JSON.parse(result);
-                                    //             // console.log(ajaxdata);
-                                    //             $("#roomedit").empty();
-                                    //             let txtrow = "";
-                                    //             for (let i = 0; i < ajaxdata.length; i++) {
-                                    //                 // console.log(ajaxdata[i]);
-                                    //                 $("#name_roomtype").append("<option value=" + ajaxdata[i]['id'] + ">" + ajaxdata[i]['name_roomtype'] + "</option>");
-                                    //             }
-                                    //             // console.log(result);
-                                    //         }
-                                    //     });
+                                    function autoselect(value) {
+                                        // console.log(value);
+                                        $.ajax({
+                                            url: "ajaxdata.php?page=checkprice&&id=" + value,
+                                            type: "GET",
+                                            success: function(result) {
+                                                let ajaxdata = JSON.parse(result);
+                                                if (ajaxdata != "" && ajaxdata != null) {
+                                                    $("#roomedit").empty();
+                                                    for (let i = 0; i < ajaxdata.length; i++) {
+                                                        // console.log(ajaxdata[i]['name_roomtype']);
+                                                        $("#roomedit").append("<option value='" + ajaxdata[i]['name_roomtype'] + "'>" + ajaxdata[i]['name_roomtype'] + "</option>");
+                                                    }
+                                                } else {
+                                                    let val = $("#defualtroom").val();
+                                                    // $("#defualtroom").empty();
+                                                    $("#roomedit").empty();
+                                                    let text = "<option value='" + val + "' id='roomedit'>" + val + "</option>";
+                                                    $("#roomedit").append(text);
+                                                }
+                                            }
+                                        });
+                                        // console.log($("#roomedit  option:selected").val());
+                                    }
+
+                                    // function checkAfterUpdate() {
+                                    //     console.log($("#noidedit").val());
+                                    //     console.log($("#checkinedit").val());
+                                    //     console.log($("#checkoutedit").val());
+                                    //     console.log($("#nameedit").val());
+                                    //     console.log($("#resortedit  option:selected").text());
+                                    //     console.log($("#roomedit ").val());
+                                    //     console.log("s s");
                                     // }
                                 </script>
 
-                                <tr align="center" id='val' oncontextmenu="rightclick('<?php echo $results['id_booking']; ?>','<?php echo $results['checkin']; ?>','<?php echo $results['checkout']; ?>','<?php echo $results['room_name']; ?>','<?php echo $results['name_resort']; ?>','<?php echo $results['name']; ?>','<?php echo $results['noid_booking']; ?>')">
+                                <tr align="center" id='val' oncontextmenu="rightclick('<?php echo $results['id_booking']; ?>','<?php echo $results['checkin']; ?>','<?php echo $results['checkout']; ?>','<?php echo $results['room_name']; ?>','<?php echo $results['name_resort']; ?>','<?php echo $results['name']; ?>','<?php echo $results['noid_booking']; ?>','<?php echo $results['phone']; ?>')">
                                     <td class="table-plus" style="padding-left: 40px!important;text-align:left!important"><?php echo  "เลขที่ " . $results["id_booking"];  ?>
                                         <?php if ($results["noid_booking"] != "") { ?>
                                             <i onmouseenter="ref('<?php echo $results['id_booking']; ?>')" data-placement="top" data-toggle="popover" data-content='<?php echo "อ้างอิง เลขที่ " . $results["noid_booking"]; ?>' id="element<?php echo $results["id_booking"]; ?>" onmouseleave="refc('<?php echo $results['id_booking']; ?>')">
@@ -976,65 +1014,78 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                     </table>
                 </div>
             </div>
-
-
             <div class="modal fade" id="editbooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">แก้ไข Booking</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="inputAddress2">เลขที่อ้างอิง</label>
-                                <input type="text" class="form-control" id="noidedit" placeholder="ไม่มีเลขอ้างอิง" readonly>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-
-                                    <label for="inputEmail4">Checkin</label>
-                                    <input type="date" class="form-control" id="checkinedit" placeholder="Email" value="">
+                            <form action="add_1.php" method="POST">
+                                <div class="form-group">
+                                    <label for="inputAddress2">เลขที่อ้างอิง</label>
+                                    <input type="text" class="form-control" id="noidedit" name="noidedit" placeholder="ไม่มีเลขอ้างอิง" readonly>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Checkout</label>
-                                    <input type="date" class="form-control" id="checkoutedit" placeholder="Password">
+                                <input type="text" id='id_tb_report' name="id_tb_report" hidden>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+
+                                        <label for="inputEmail4">Checkin</label>
+                                        <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="checkinedit" name="checkinedit" placeholder="Email" value="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Checkout</label>
+                                        <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="checkoutedit" name="checkoutedit" placeholder="Password">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">ชื่อผู้จอง</label>
-                                <input type="text" class="form-control" id="nameedit" placeholder="Apartment, studio, or floor">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">รีสอร์ท</label>
-                                <select class="form-control form-control-lg" id="resortedit">
-                                    <!-- <option value="" id="defaultresort"></option>
-                                    <option value="2w">2w</option> -->
-                                </select>
-                                <!-- <input type="text" class="form-control" id="resortedit" placeholder="Apartment, studio, or floor"> -->
-                            </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">ชื่อผู้จอง</label>
+                                    <input type="text" class="form-control" id="nameedit" name="nameedit">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">เบอร์โทร</label>
+                                    <input type="text" class="form-control" maxlength="10" minlength="10" id="phoneedit" name="phoneedit">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">รีสอร์ท</label>
+                                    <select class="form-control form-control-lg" id="resortedit" onchange="autoselect(this.value)" name="resortedit">
+                                        <option value="" id="defualtresort"></option>
+                                        <?php
+                                        $sql5 = "SELECT * FROM tb_resort";
+                                        $query5 = mysqli_query($con, $sql5);
+                                        while ($results1 = mysqli_fetch_assoc($query5)) : ?>
+                                            <option value="<?php echo $results1["id"]; ?>"><?php echo $results1["resort_name"]; ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="inputAddress2">ห้องพัก</label>
-                                <select class="form-control form-control-lg" id="roomedit">
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">ห้องพัก</label>
+                                    <input type="text" id="defualtroom" hidden>
+                                    <select class="form-control form-control-lg" id="roomedit" name="roomedit">
+                                    </select>
+                                </div>
+                                <script>
 
+                                </script>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="checkAfterUpdate()">Save changes</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="text" name="type" value="editbooking" hidden>
+                                    <!-- <button type="button" class="btn btn-primary" onclick="checkAfterUpdate()">Save changes</button> -->
+                                    <button type="sumbit" class="btn btn-primary">แก้ไข</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-wrap pd-20 mb-20 card-box">Welcome Akira Lipe , Ananya Lipe , Thechic Lipe <a href="https://ananyalipe.com" target="_blank">แบบฟอร์มเช็คราคาห้องพักของแต่ละรีสอร์ท</a></div>
         </div>
+        <div class="footer-wrap pd-20 mb-20 card-box">Welcome Akira Lipe , Ananya Lipe , Thechic Lipe <a href="https://ananyalipe.com" target="_blank">แบบฟอร์มเช็คราคาห้องพักของแต่ละรีสอร์ท</a></div>
     </div>
-
+    </div>
     <?php include "footer.php"; ?>
 </body>
 
@@ -1043,13 +1094,4 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
     $(document).contextmenu(function() {
         return false;
     });
-
-    // function checkAfterUpdate() {
-    //    alert($("#noidedit").val());
-    //    alert($("#checkinedit").val());
-    //    alert($("#checkoutedit").val());
-    //    alert($("#nameedit").val());
-    //    alert($("#resortedit").val());
-    //     // console.log($("#defaultresort").html(resort));
-    // }
 </script>

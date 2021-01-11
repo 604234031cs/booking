@@ -113,7 +113,7 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
                     type: "GET",
                     success: function(result) {
                       let ajaxdata = JSON.parse(result);
-                      // console.log(ajaxdata);
+                      // 
                       $("#name_roomtype").empty();
                       let txtrow = "";
                       for (let i = 0; i < ajaxdata.length; i++) {

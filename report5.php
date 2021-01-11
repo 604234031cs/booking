@@ -1,8 +1,9 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
-// header("Content-type: application/pdf");
-require_once('tcpdf/tcpdf.php');
+header("Content-type: application/pdf");
+require_once 'tcpdf/tcpdf.php';
+include('connectdb.php');
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("voucher รวม");
@@ -23,8 +24,7 @@ $obj_pdf->SetAutoPageBreak(TRUE, 10);
 $obj_pdf->SetFont('angsanaupc', '', 13);
 $obj_pdf->AddPage();
 
-$tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'
-=> 0)));
+$tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 $obj_pdf->setHtmlVSpace($tagvs);
 $obj_pdf->SetCellPadding(0.02);
 $obj_pdf->setCellHeightRatio(0.98);
@@ -39,7 +39,7 @@ $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', fals
 // $connect = mysqli_connect("localhost", "thechic_resort", "Aa123654", "thechic_resort");
 // $connect = mysqli_connect("localhost", "root", "", "booking");
 
-require_once('connectdb.php');
+
 
 // mysqli_set_charset($con, "utf8");
 $sql1 = "SELECT * FROM tb_report   WHERE id ='" . $_GET["id"] . "'";
@@ -200,7 +200,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
      <table class="first" cellpadding="4" cellspacing="3" style="width:100%">
     <tr style="background-color: #DCDCDC">
         <td width="11.75%" style="background-color:#fff"><b style="font-size: 1em;color:black">รายละเอียดอื่น   :</b></td>
-        <td width="88.25%" >'.$row1['details'].'</td>
+        <td width="88.25%" >' . $row1['details'] . '</td>
     </tr>
 </table>
 <br>

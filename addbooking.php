@@ -1,13 +1,7 @@
 <?php
-//require( "PHPMailer/class.phpmailer.php" );
-//require( "PHPMailer/PHPMailerAutoload.php" );
-// include_once('connectdb.php');
 require 'connectdb.php';
 require_once('head.php');
 error_reporting(0);
-
-
-
 // older_children
 // child
 $month =  date('m');
@@ -77,8 +71,8 @@ $name_roomtype = $_POST['name_roomtype'];
 $upload_dir = "img/slips/";
 $uploaded_file = $upload_dir . $fileName;
 $imageFileType = strtolower(pathinfo($uploaded_file, PATHINFO_EXTENSION));
-// echo $imageFileType;
 
+// echo $imageFileType;
 //insert file information into db table
 // echo	$strSQL = "INSERT INTO `tb_report` (`id`, `id_booking`,`month`, `transaction_date`, `name`, `phone`, `room_name`, `package`, `number_of_rooms`,`extrabed`, `customers`,`checkin`,`checkout`,`Sales`,`deposit`,`sum`,`car`,`boat`,`diving`,`payment_status`,`occupancy_status`,`collection_date`,`com,commission_value`,`insurance`,`slip`,`note`) 
 //VALUES (NULL, '5','$month',NOW(), '$name', '$phone', '$room_name', '$package', '$number_of_rooms','$extrabed', '$customers','$checkin2 ', '$checkout2' , '$Sales', '$deposit', '$sum', '$car', '$boat', '$diving', '1', '1', NOW(), '$com', '$commission_value' , '$insurance', '$fileName', '$note');";
@@ -103,6 +97,7 @@ if ($objQuery === TRUE) {
         $num = substr("0000" . 1, -4);
         $text = "" . $num . "-" . $ytsever;
         $reimge = $text . "." . $imageFileType;
+
         $in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
         $a = mysqli_query($con, $in);
         move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file);
@@ -112,6 +107,7 @@ if ($objQuery === TRUE) {
         $num = substr("0000" . $row, -4);
         $text = "" . $num . "-" . $ytsever;
         $reimge = $text . "." . $imageFileType;
+
         $in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
         $a = mysqli_query($con, $in);
         move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file);
@@ -119,12 +115,9 @@ if ($objQuery === TRUE) {
     }
 
 
-
-
     // $syear = "" + $startyear + "-01-01";
     $resort_name = $ss['room_name'];
     // $startyear = date("Y");
-
 
 
     $Token = "3CE5IOOxiuntE6OtBxXAMAgkJjgcl01ibxvAQSZBjvp";
@@ -157,41 +150,18 @@ if ($objQuery === TRUE) {
         // echo "status : ".$result_['status']; echo "message : ". $result_['message'];
     }
     curl_close($chOne);
-
     // //------------------------------------end LINE----------------------------------------------
 
-
-
-
-
-
-    echo "<div><script>
-        swal('สำเร็จ!','บันทึกสำเร็จ', 'success')
-        .then(() => {
-            setTimeout(function(){ 
-                window.location.href='report.php'
-            }, 1000);
-        });</script></div>";
-
-
-
-
-
-
-
-
-
-
-
-
     // $text1 = "" . $num;
-
-
-
-
 }
 // echo "<script>alert('บันทึกสำเร็จ');window.location.href = 'report.php'</script > ";
-
+echo "<div><script>
+swal('สำเร็จ!','บันทึกสำเร็จ', 'success')
+.then(() => {
+    setTimeout(function(){ 
+        window.location.href='report.php'
+    }, 1000);
+});</script></div>";
 
 //----------------------- LINE-------------------https://thechiclipe.com/form_resort/report5.php?id=1------------------------------\ninvoice: http://tsuslowhostel.com/filePDF/" . $idb . ".pdf"
 

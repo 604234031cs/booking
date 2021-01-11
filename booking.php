@@ -315,7 +315,8 @@ $typser = $_POST["typser"];
 
                         <script language="javascript">
                             $(document).ready(function() {
-                                let deposit = parseInt($('#deposit').val());
+                                let deposit = parseFloat($('#deposit').val());
+                                deposit = deposit.toFixed(0)
                                 let x1 = deposit.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                                 // let v = "" + deposit;
                                 // x1 = v;
@@ -328,7 +329,7 @@ $typser = $_POST["typser"];
 
                                 $('#deposit').val(x1);
 
-                                // let sum1 = parseInt($('#sum').val());
+                                // let sum1 = parseFloat($('#sum').val());
                                 // let v2 = "" + sum1;
                                 // x2 = v2;
                                 // // console.log(x2);
@@ -345,9 +346,9 @@ $typser = $_POST["typser"];
                                 var int1 = document.getElementById("sum").value;
                                 var int2 = document.getElementById("Sales").value;
                                 var int3 = document.getElementById("deposit2").value;
-                                var n1 = parseInt(int1);
-                                var n2 = parseInt(int2);
-                                var n3 = parseInt(int3);
+                                var n1 = parseFloat(int1);
+                                var n2 = parseFloat(int2);
+                                var n3 = parseFloat(int3);
                                 // console.log(isNaN(int1));
                                 if ((isNaN(n1)) || (isNaN(n2))) {
                                     document.getElementById("deposit").setAttribute("style", "color:red;");
@@ -362,6 +363,7 @@ $typser = $_POST["typser"];
                                         $("#deposit").val(int1);
                                     } else {
                                         s = n1 - n2
+                                        s = s.toFixed(0);
                                         s = s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                                         document.getElementById("deposit").setAttribute("style", "color:green;");
                                         var deposit55 = document.getElementById("deposit").value = s;
@@ -374,13 +376,13 @@ $typser = $_POST["typser"];
                                 var int1 = document.getElementById("sum").value;
                                 var int2 = document.getElementById("Sales").value;
                                 var int3 = document.getElementById("deposit2").value;
-                                var n1 = parseInt(int1);
-                                var n2 = parseInt(int2);
-                                var n3 = parseInt(int3);
+                                var n1 = parseFloat(int1);
+                                var n2 = parseFloat(int2);
+                                var n3 = parseFloat(int3);
                                 if (n1 < n3) {
                                     $('#sum').val(n3);
-
                                     s = n3 - n2;
+                                    s = s.toFixed(0);
                                     s = s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                                     $('#deposit').val(s);
                                 }
@@ -411,7 +413,7 @@ $typser = $_POST["typser"];
                                 <label>
                                     <h4 class="text-blue h4">ราคารวมทั้งหมด </h4>
                                 </label>
-                                <input type="number" min="<?php echo $sum; ?>" class="form-control" name="sum" id="sum" value="<?php echo $sum; ?>" onkeyup="a()" onchange="b()" />
+                                <input type="number" min="<?php echo round($sum); ?>" class="form-control" name="sum" id="sum" value="<?php echo round($sum); ?>" onkeyup="a()" onchange="b()" />
                             </div>
                         </div>
 

@@ -372,15 +372,23 @@ if ($type == "addresort") {
 			$resort_name = $ss['room_name'];
 
 			$ytsever = substr(date("Y") + 543, -2);
-			// echo $row;
 			if ($row <= 0) {
 				$num = substr("0000" . 1, -4);
 				$text = "" . $num . "-" . $ytsever;
 				$reimge = $text . "." . $imageFileType;
 				$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
 				$a = mysqli_query($con, $in);
-				move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file);
-				rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+				} else {
+					echo "<div><script>
+							swal('Error!','อัพโหลด Sli[ Fail', 'error')
+							.then(() => {
+								setTimeout(function(){ 
+									window.location.href='report.php'
+								}, 1000);
+							});</script></div>";
+				}
 			} else {
 
 				$num = substr("0000" . $row, -4);
@@ -388,8 +396,17 @@ if ($type == "addresort") {
 				$reimge = $text . "." . $imageFileType;
 				$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
 				$a = mysqli_query($con, $in);
-				move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file);
-				rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+				} else {
+					echo "<div><script>
+							swal('Error!','อัพโหลด Sli[ Fail', 'error')
+							.then(() => {
+								setTimeout(function(){ 
+									window.location.href='report.php'
+								}, 1000);
+							});</script></div>";
+				}
 			}
 
 			// echo "<script> alert('ได้ทำการลบประเภทรีสอร์ท เรียบร้อย!!');window.location.href='edit.php?id=$resort_name';</script>";
@@ -447,13 +464,67 @@ if ($type == "addresort") {
 
 	$id_report = $_GET['id_report'];
 	$sql = "UPDATE tb_report set report_status = 4 where id = '$id_report'";
-
-
 	$a = mysqli_query($con, $sql);
 	if ($a == true) {
 		echo json_encode(2);
 	}
-}
+} else if ($type == 'editbooking') {
+	$id_tb_report = $_REQUEST['id_tb_report'];
+	$noidedit = $_REQUEST['noidedit'];
+	$checkinedit = $_REQUEST['checkinedit'];
+	$checkoutedit = $_REQUEST['checkoutedit'];
+	$nameedit = $_REQUEST['nameedit'];
+	$phoneedit = $_REQUEST['phoneedit'];
+	$resortedit = $_REQUEST['resortedit'];
+	$roomedit = $_REQUEST['roomedit'];
+	$sql = "SELECT  * FROM tb_resort where id='$resortedit' or resort_name='$resortedit'";
+	$re = mysqli_query($con, $sql);
+	$row = mysqli_fetch_assoc($re);
+	$name =  $row['resort_name'];
 
+
+
+	if ($noidedit  != null && $noidedit  != "") {
+		$sql = "UPDATE tb_report set name='$nameedit',name_resort='$roomedit',room_name='$name',checkin='$checkinedit',checkout='$checkoutedit',phone='$phoneedit' where id_booking ='$id_tb_report'";
+		$sql2 = "UPDATE tb_report set name='$nameedit',name_resort='$roomedit',room_name='$name',checkin='$checkinedit',checkout='$checkoutedit',phone='$phoneedit' where noid_booking ='$noidedit'";
+		$a = mysqli_query($con, $sql);
+		$a = mysqli_query($con, $sql2);
+		echo "<div><script>
+		swal('สำเร็จ!','แก้ไข Booking เรียบร้อย', 'success')
+		.then(() => {
+			setTimeout(function(){ 
+				window.location.href='report.php'
+			}, 1000);
+		});</script></div>";
+	} else {
+		$sql3 = "SELECT * FROM tb_report where noid_booking='$id_tb_report'";
+		$re = mysqli_query($con, $sql3);
+		$row2 = mysqli_fetch_assoc($re);
+
+		if ($row2 != null) {
+			$sql = "UPDATE tb_report set name='$nameedit',name_resort='$roomedit',room_name='$name',checkin='$checkinedit',checkout='$checkoutedit',phone='$phoneedit' where id_booking ='$id_tb_report'";
+			$sql2 = "UPDATE tb_report set name='$nameedit',name_resort='$roomedit',room_name='$name',checkin='$checkinedit',checkout='$checkoutedit',phone='$phoneedit' where noid_booking ='$id_tb_report'";
+			$a = mysqli_query($con, $sql);
+			$a = mysqli_query($con, $sql2);
+			echo "<div><script>
+			swal('สำเร็จ!','แก้ไข Booking เรียบร้อย', 'success')
+			.then(() => {
+				setTimeout(function(){ 
+					window.location.href='report.php'
+				}, 1000);
+			});</script></div>";
+		} else {
+			$sql = "UPDATE tb_report set name='$nameedit',name_resort='$roomedit',room_name='$name',checkin='$checkinedit',checkout='$checkoutedit',phone='$phoneedit' where id_booking ='$id_tb_report'";
+			$a = mysqli_query($con, $sql);
+			echo "<div><script>
+			swal('สำเร็จ!','แก้ไข Booking เรียบร้อย', 'success')
+			.then(() => {
+				setTimeout(function(){ 
+					window.location.href='report.php'
+				}, 1000);
+			});</script></div>";
+		}
+	}
+}
 
 mysqli_close($con);
