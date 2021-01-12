@@ -1,9 +1,10 @@
 <?php
 session_start();
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: application/pdf; charset=utf-8', true);
 header("Content-type: application/pdf");
+header('Content-disposition: inline; filename=Report.pdf');
 require_once 'tcpdf/tcpdf.php';
-include('connectdb.php');
+include_once('connectdb.php');
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("voucher รวม");
@@ -24,7 +25,7 @@ $obj_pdf->SetAutoPageBreak(TRUE, 10);
 $obj_pdf->SetFont('angsanaupc', '', 13);
 $obj_pdf->AddPage();
 
-$tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+$tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n' => 0)));
 $obj_pdf->setHtmlVSpace($tagvs);
 $obj_pdf->SetCellPadding(0.02);
 $obj_pdf->setCellHeightRatio(0.98);

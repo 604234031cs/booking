@@ -1,9 +1,11 @@
 <?php
 session_start();
-header('Content-Type: text/html; charset=utf-8');
+
+header('Content-Type: application/pdf; charset=utf-8', true);
 header("Content-type: application/pdf");
-require_once('tcpdf/tcpdf.php');
-include('connectdb.php');
+header('Content-disposition: inline; filename=Report.pdf');
+require_once 'tcpdf/tcpdf.php';
+include_once('connectdb.php');
 $obj_pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
 $obj_pdf->SetTitle("voucher ห้องพัก");

@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
 <?php include "head.php";
@@ -492,25 +495,25 @@ $typser = $_POST["typser"];
 
 
 
-                        <input hidden type="text" name="typser" value="<?php echo $typser; ?>">
-                        <input hidden type="text" name="room_name" id="room_name" value="<?php echo $name ?>" />
-                        <input hidden type="text" name="days" id="days" value="<?php echo $days; ?> " />
-                        <input hidden type="text" name="name_roomtype" id="name_roomtype" value="<?php echo $name_roomtype ?>" />
-                        <input hidden type="text" name="package" id="package" value="<?php echo $days; ?>" />
-                        <input hidden type="text" name="number_of_rooms" id="number_of_rooms" value="<?php echo $bed ?>" />
-                        <input hidden type="text" name="customers" id="customers" value="<?php echo $adult; ?>" />
-                        <input hidden type="text" name="older_children" id="older_children" value="<?php echo $older_children; ?>" />
-                        <input hidden type="text" name="child" id="child" value="<?php echo $child; ?>" />
-                        <input hidden type="text" name="checkin" id="checkin" value="<?php echo $Checkin; ?>" />
-                        <input hidden type="text" name="checkout" id="checkout" value="<?php echo $Checkout; ?>" />
-                        <input hidden type="text" name="insurance" id="insurance" value="<?php echo $insurance; ?>">
+                        <input  type="text" name="typser" value="<?php echo $typser; ?>">
+                        <input  type="text" name="room_name" id="room_name" value="<?php echo $name ?>" />
+                        <input  type="text" name="days" id="days" value="<?php echo $days; ?> " />
+                        <input  type="text" name="name_roomtype" id="name_roomtype" value="<?php echo $name_roomtype ?>" />
+                        <input  type="text" name="package" id="package" value="<?php echo $days; ?>" />
+                        <input  type="text" name="number_of_rooms" id="number_of_rooms" value="<?php echo $bed ?>" />
+                        <input  type="text" name="customers" id="customers" value="<?php echo $adult; ?>" />
+                        <input  type="text" name="older_children" id="older_children" value="<?php echo $older_children; ?>" />
+                        <input  type="text" name="child" id="child" value="<?php echo $child; ?>" />
+                        <input  type="text" name="checkin" id="checkin" value="<?php echo $Checkin; ?>" />
+                        <input  type="text" name="checkout" id="checkout" value="<?php echo $Checkout; ?>" />
+                        <input  type="text" name="insurance" id="insurance" value="<?php echo $insurance; ?>">
 
-                        <input hidden type="text" name="car_num" id="car_num" value="<?php echo $car_num; ?>" />
-                        <input hidden type="text" name="boat_num" id="boat_num" value="<?php echo $boat_num; ?>" />
-                        <input hidden type="text" name="diving_num" id="diving_num" value="<?php echo $diving_num; ?>" />
-                        <input hidden type="text" name="commission_value" id="commission_value" value="<?php echo $commission_value; ?>" />
-                        <input hidden type="text" name="com" id="com" value="<?php echo $com; ?>" />
-                        <input hidden type="text" name="extrabed" id="extrabed" value="<?php echo $extrabed; ?>" />
+                        <input  type="text" name="car_num" id="car_num" value="<?php echo $car_num; ?>" />
+                        <input  type="text" name="boat_num" id="boat_num" value="<?php echo $boat_num; ?>" />
+                        <input  type="text" name="diving_num" id="diving_num" value="<?php echo $diving_num; ?>" />
+                        <input  type="text" name="commission_value" id="commission_value" value="<?php echo $commission_value; ?>" />
+                        <input  type="text" name="com" id="com" value="<?php echo $com; ?>" />
+                        <input  type="text" name="extrabed" id="extrabed" value="<?php echo $extrabed; ?>" />
 
 
 

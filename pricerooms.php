@@ -130,7 +130,7 @@ if ($_POST['id'] != "") {
 
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h3 class="text-blue h3">แก้ไขราคาห้องพัก</h3>
+                    <h3 class="text-blue h3">ข้อมูลเช็คชื่อ</h3>
                 </div>
                 <div class="col-md-4 col-sm-12" style="padding-bottom: 20px;">
 
@@ -165,7 +165,6 @@ if ($_POST['id'] != "") {
                             <tr>
                                 <td style="width:100%!important">
                                     <div id="calendar" style="width:100%!important;width:100%;border:solid 1px #ccc">
-
                                         <select class="slbox" id="ybox" style="width:5%;" onchange="changyear()"></select>
                                         <br>
                                         <input type="hidden" id="monbox">

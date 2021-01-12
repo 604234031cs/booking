@@ -21,19 +21,15 @@ if ($noid_booking != null && $noid_booking != "") {
 	echo "ไมมีเลขอ้างอิง";
 }
 
-
 for ($i = 0; $i <= (int)$_POST["hdnCount"]; $i++) {
 	if (isset($_REQUEST['id_booking'])) {
 		if ($_POST['id_booking'] != "" && $_POST["name$i"] != "" && $_POST["age$i"] != "") {
 			// echo  "id_booking:=>" . $_POST['id_booking'] . "<br>";
 			// echo "name" . $i . "=>" . $_POST["name$i"] . "<br>";
 			// echo "age" . $i . "=>" . $_POST["age$i"] . "<br>";
-
 			$sql = "INSERT INTO tb_voucher (id ,id_bookink, service_name, note ,status) 
 								VALUES (NULL,'$id_v','" . $_POST["name$i"] . "','" . $_POST["age$i"] . "','9');";
 			$query = mysqli_query($con, $sql);
-
-
 			// $a = mysqli_query($con, $in3);
 		}
 	}

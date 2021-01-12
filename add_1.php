@@ -349,113 +349,113 @@ if ($type == "addresort") {
 		$imageFileType = strtolower(pathinfo($uploaded_file, PATHINFO_EXTENSION));
 		// $Sales2
 
-		// if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+		if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
 
 
-		$strSQL = "INSERT INTO `tb_report` (`id`, `id_booking`, `month`, `transaction_date`, `name`, `phone`, `line`, `room_name`, `name_resort`, `package`, `number_of_rooms`, `extrabed`, `customers`, `checkin`, `checkout`, `Sales`, `deposit`, `sum`, `car`, `boat`, `diving`, `payment_status`, `occupancy_status`, `collection_date`, `com`, `commission_value`, `insurance`, `slip`, `Byyy`, `adult`,`noid_booking`, `note`, `details`, `report_status`,ch1,ch2,typ_ser,status_pay) VALUES (NULL,'', '$month', NOW(), '$name', '$phone', '$line', '$room_name', '$name_resort', '$package', '$number_of_rooms', '$extrabed', '$customers', '$checkin', '$checkout', '$deposit1' , '$deposit2', '$sum', '$car ', '$boat', '$diving', '1', '1', NOW(), '$com', '$commission_value', '$insurance', '$fileName', '$Byyy', '$adult', '$id_booking', '$note', '', '3','$ch1','$ch2','$typ_ser','$status_pay')";
+			$strSQL = "INSERT INTO `tb_report` (`id`, `id_booking`, `month`, `transaction_date`, `name`, `phone`, `line`, `room_name`, `name_resort`, `package`, `number_of_rooms`, `extrabed`, `customers`, `checkin`, `checkout`, `Sales`, `deposit`, `sum`, `car`, `boat`, `diving`, `payment_status`, `occupancy_status`, `collection_date`, `com`, `commission_value`, `insurance`, `slip`, `Byyy`, `adult`,`noid_booking`, `note`, `details`, `report_status`,ch1,ch2,typ_ser,status_pay) VALUES (NULL,'', '$month', NOW(), '$name', '$phone', '$line', '$room_name', '$name_resort', '$package', '$number_of_rooms', '$extrabed', '$customers', '$checkin', '$checkout', '$deposit1' , '$deposit2', '$sum', '$car ', '$boat', '$diving', '1', '1', NOW(), '$com', '$commission_value', '$insurance', '$fileName', '$Byyy', '$adult', '$id_booking', '$note', '', '3','$ch1','$ch2','$typ_ser','$status_pay')";
 
 
-		$objQuery = mysqli_query($con, $strSQL);
+			$objQuery = mysqli_query($con, $strSQL);
 
-		if ($objQuery === TRUE) {
+			if ($objQuery === TRUE) {
 
-			$yt = date('Y');
-			$last = "SELECT * FROM tb_report where transaction_date like '%$yt%' ORDER BY id DESC LIMIT 1";
-			$last1 = "SELECT * FROM tb_report where transaction_date like '%$yt%'";
-			$re = mysqli_query($con, $last);
+				$yt = date('Y');
+				$last = "SELECT * FROM tb_report where transaction_date like '%$yt%' ORDER BY id DESC LIMIT 1";
+				$last1 = "SELECT * FROM tb_report where transaction_date like '%$yt%'";
+				$re = mysqli_query($con, $last);
 
-			$re2 = mysqli_query($con, $last1);
+				$re2 = mysqli_query($con, $last1);
 
-			$ss = mysqli_fetch_assoc($re);
-			$row  = mysqli_num_rows($re2);
+				$ss = mysqli_fetch_assoc($re);
+				$row  = mysqli_num_rows($re2);
 
-			$resort_name = $ss['room_name'];
+				$resort_name = $ss['room_name'];
 
-			$ytsever = substr(date("Y") + 543, -2);
-			if ($row <= 0) {
-				$num = substr("0000" . 1, -4);
-				$text = "" . $num . "-" . $ytsever;
-				$reimge = $text . "." . $imageFileType;
-				$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
-				$a = mysqli_query($con, $in);
-				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
-					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+				$ytsever = substr(date("Y") + 543, -2);
+				if ($row <= 0) {
+					$num = substr("0000" . 1, -4);
+					$text = "" . $num . "-" . $ytsever;
+					$reimge = $text . "." . $imageFileType;
+					$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
+					$a = mysqli_query($con, $in);
+					// if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+						rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+					// } else {
+					// 	echo "<div><script>
+					// 		swal('Error!','อัพโหลด Sli[ Fail', 'error')
+					// 		.then(() => {
+					// 			setTimeout(function(){ 
+					// 				window.location.href='report.php'
+					// 			}, 1000);
+					// 		});</script></div>";
+					// }
 				} else {
-					echo "<div><script>
-							swal('Error!','อัพโหลด Sli[ Fail', 'error')
-							.then(() => {
-								setTimeout(function(){ 
-									window.location.href='report.php'
-								}, 1000);
-							});</script></div>";
-				}
-			} else {
 
-				$num = substr("0000" . $row, -4);
-				$text = "" . $num . "-" . $ytsever;
-				$reimge = $text . "." . $imageFileType;
-				$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
-				$a = mysqli_query($con, $in);
-				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
-					rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+					$num = substr("0000" . $row, -4);
+					$text = "" . $num . "-" . $ytsever;
+					$reimge = $text . "." . $imageFileType;
+					$in = " UPDATE `tb_report` SET `id_booking` = '" . $text . "',slip='$reimge' WHERE `tb_report`.`id` ='" . $ss['id'] . "'";
+					$a = mysqli_query($con, $in);
+					// if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+						rename('img/slips/' . $fileName, 'img/slips/' . $reimge);
+					// } else {
+					// 	echo "<div><script>
+					// 		swal('Error!','อัพโหลด Sli[ Fail', 'error')
+					// 		.then(() => {
+					// 			setTimeout(function(){ 
+					// 				window.location.href='report.php'
+					// 			}, 1000);
+					// 		});</script></div>";
+					// }
+				}
+
+				// echo "<script> alert('ได้ทำการลบประเภทรีสอร์ท เรียบร้อย!!');window.location.href='edit.php?id=$resort_name';</script>";
+
+				//----------------------- LINE-------------------
+				$Token = "LLHQCmiOVjOjpwiAAiblUjOONK5kUqEVyObBCNwdTIL";
+				// $Token = "etxmEbZ2cY5OvNGJtUS5dJcaR1gXVbdmpiJ0tuRCVTY";
+				// $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nยอดคงเหลือ 0\nยอดเงินในการชำระ: " . $deposit1 . "\nยอดสุทธิ: " . $sum;
+				$message = "\nเลขที่ " . $text . "\nชื่อลูกค้า : " . $name . " \nโรงเเรมที่จอง : " . $room_name . "\nวันที่เช็คอิน : " . $checkin . "\nวันที่เช็คเอาท์ : " . $checkout . "\nยอดคงเหลือ : 0\nยอดเงินในการชำระ : " . number_format($deposit1) . "\nยอดสุทธิ : " . number_format($sum);
+
+
+
+				$lineapi = $Token; // ใส่ token key ที่ได้มา
+				$mms = trim($message); // ข้อความที่ต้องการส่ง
+
+				date_default_timezone_set("Asia/Bangkok");
+				$chOne = curl_init();
+				curl_setopt($chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+				// SSL USE 
+				curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
+				//POST 
+				curl_setopt($chOne, CURLOPT_POST, 1);
+				curl_setopt($chOne, CURLOPT_POSTFIELDS, "message=$mms");
+				curl_setopt($chOne, CURLOPT_FOLLOWLOCATION, 1);
+				$headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $lineapi . '',);
+				curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
+				curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
+				$result = curl_exec($chOne);
+				//Check error 
+				if (curl_error($chOne)) {
+					echo "<script> alert(''error:'" . curl_error($chOne) . "');</script>";
 				} else {
-					echo "<div><script>
-							swal('Error!','อัพโหลด Sli[ Fail', 'error')
-							.then(() => {
-								setTimeout(function(){ 
-									window.location.href='report.php'
-								}, 1000);
-							});</script></div>";
+					$result_ = json_decode($result, true);
+					// echo "status : ".$result_['status']; echo "message : ". $result_['message'];
 				}
-			}
+				curl_close($chOne);
+				//------------------------------------end LINE----------------------------------------------
 
-			// echo "<script> alert('ได้ทำการลบประเภทรีสอร์ท เรียบร้อย!!');window.location.href='edit.php?id=$resort_name';</script>";
-
-			//----------------------- LINE-------------------
-			$Token = "LLHQCmiOVjOjpwiAAiblUjOONK5kUqEVyObBCNwdTIL";
-			// $Token = "etxmEbZ2cY5OvNGJtUS5dJcaR1gXVbdmpiJ0tuRCVTY";
-			// $message = "\nเลขที่ " . $text . "\nชื่อลูกค้า :" . $name . " \nโรงเเรมที่จอง: " . $room_name . "\nวันที่เช็คอิน: " . $checkin . "\nวันที่เช็คเอาท์: " . $checkout . "\nยอดคงเหลือ 0\nยอดเงินในการชำระ: " . $deposit1 . "\nยอดสุทธิ: " . $sum;
-			$message = "\nเลขที่ " . $text . "\nชื่อลูกค้า : " . $name . " \nโรงเเรมที่จอง : " . $room_name . "\nวันที่เช็คอิน : " . $checkin . "\nวันที่เช็คเอาท์ : " . $checkout . "\nยอดคงเหลือ : 0\nยอดเงินในการชำระ : " . number_format($deposit1) . "\nยอดสุทธิ : " . number_format($sum);
-
-
-
-			$lineapi = $Token; // ใส่ token key ที่ได้มา
-			$mms = trim($message); // ข้อความที่ต้องการส่ง
-
-			date_default_timezone_set("Asia/Bangkok");
-			$chOne = curl_init();
-			curl_setopt($chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
-			// SSL USE 
-			curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
-			curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
-			//POST 
-			curl_setopt($chOne, CURLOPT_POST, 1);
-			curl_setopt($chOne, CURLOPT_POSTFIELDS, "message=$mms");
-			curl_setopt($chOne, CURLOPT_FOLLOWLOCATION, 1);
-			$headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $lineapi . '',);
-			curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
-			$result = curl_exec($chOne);
-			//Check error 
-			if (curl_error($chOne)) {
-				echo "<script> alert(''error:'" . curl_error($chOne) . "');</script>";
-			} else {
-				$result_ = json_decode($result, true);
-				// echo "status : ".$result_['status']; echo "message : ". $result_['message'];
-			}
-			curl_close($chOne);
-			//------------------------------------end LINE----------------------------------------------
-
-			// echo "<script> alert('ได้ทำการจ่ายยอดที่เหลือ เรียบร้อย!!');window.location.href='report.php?';</script>";
-			echo "<div><script>
+				// echo "<script> alert('ได้ทำการจ่ายยอดที่เหลือ เรียบร้อย!!');window.location.href='report.php?';</script>";
+				echo "<div><script>
 			swal('สำเร็จ!','ได้ทำการจ่ายยอดที่เหลือ เรียบร้อย', 'success')
 			.then(() => {
 				setTimeout(function(){ 
 					window.location.href='report.php'
 				}, 1000);
 			});</script></div>";
+			}
 		}
-		// }
 
 		// echo "<script> alert('ได้ทำการลบประเภทรีสอร์ท เรียบร้อย!!');window.location.href='report.php?';</script>";
 	}
