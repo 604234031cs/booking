@@ -353,8 +353,6 @@ if ($type == "addresort") {
 
 
 			$strSQL = "INSERT INTO `tb_report` (`id`, `id_booking`, `month`, `transaction_date`, `name`, `phone`, `line`, `room_name`, `name_resort`, `package`, `number_of_rooms`, `extrabed`, `customers`, `checkin`, `checkout`, `Sales`, `deposit`, `sum`, `car`, `boat`, `diving`, `payment_status`, `occupancy_status`, `collection_date`, `com`, `commission_value`, `insurance`, `slip`, `Byyy`, `adult`,`noid_booking`, `note`, `details`, `report_status`,ch1,ch2,typ_ser,status_pay) VALUES (NULL,'', '$month', NOW(), '$name', '$phone', '$line', '$room_name', '$name_resort', '$package', '$number_of_rooms', '$extrabed', '$customers', '$checkin', '$checkout', '$deposit1' , '$deposit2', '$sum', '$car ', '$boat', '$diving', '1', '1', NOW(), '$com', '$commission_value', '$insurance', '$fileName', '$Byyy', '$adult', '$id_booking', '$note', '', '3','$ch1','$ch2','$typ_ser','$status_pay')";
-
-
 			$objQuery = mysqli_query($con, $strSQL);
 
 			if ($objQuery === TRUE) {

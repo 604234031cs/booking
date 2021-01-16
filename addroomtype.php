@@ -206,7 +206,7 @@ if ($_POST['id'] != "") {
                 
                 function delcol(x){
                     var str = "#coltr"+ x
-                   console.log($(str));
+                //    console.log($(str));
                    $(str).remove();
                 }
             </script>

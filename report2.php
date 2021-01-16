@@ -31,7 +31,7 @@ $obj_pdf->setHtmlVSpace($tagvs);
 $obj_pdf->SetCellPadding(0.02);
 $obj_pdf->setCellHeightRatio(0.98);
 $obj_pdf->setCellPaddings($left = '0', $top = '0', $right = '0', $bottom = '0');
-$image_file = K_PATH_IMAGES . 'logo.png';
+$image_file = 'img/' . 'logo.png';
 $obj_pdf->Image($image_file, 18, 4, 30, '', 'png', '', 'c', false, 100, '', false, false, 0, false, false, false);
 
 
