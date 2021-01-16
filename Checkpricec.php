@@ -2032,12 +2032,12 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
             <thead align="center">
               <tr>
                 <th scope="col">ประเภท</th>
-                <th scope="col" onClick="menubar('table20')">ราคาขาย 20%</th>
-                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table20')">ค่าคอม 3%</th>
-                <th scope="col" onClick="menubar('table15')">ราคาขาย 15%</th>
-                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table15')">ค่าคอม 2%</th>
-                <th scope="col" onClick="menubar('table10')">ราคาขาย 10%</th>
-                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('table10')">ค่าคอม 1%</th>
+                <th scope="col" onClick="menubar('20%')">ราคาขาย 20%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('20%')">ค่าคอม 3%</th>
+                <th scope="col" onClick="menubar('15%')">ราคาขาย 15%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('15%')">ค่าคอม 2%</th>
+                <th scope="col" onClick="menubar('10%')">ราคาขาย 10%</th>
+                <th style="background-color: #2f736d;color: #fff;" scope="col" onClick="menubar('10%')">ค่าคอม 1%</th>
               </tr>
             </thead>
             <tbody align="center">
@@ -2190,8 +2190,6 @@ while ($results44 = mysqli_fetch_assoc($query44)) {
 
           </div>
         </div>
-
-
         <script>
           function menubar(action) {
             let txtdata = "";

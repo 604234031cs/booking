@@ -13,6 +13,7 @@ $userName	  = "root";
 $Password	  = "";
 $dbName	  = "booking";
 
+
 	$con = mysqli_connect($serverName,$userName,$Password,$dbName);
 
 	if (mysqli_connect_errno())

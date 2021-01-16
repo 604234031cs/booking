@@ -26,7 +26,7 @@ $obj_pdf->SetAutoPageBreak(TRUE, 10);
 $obj_pdf->SetFont('angsanaupc', '', 15);
 $obj_pdf->AddPage();
 
-$image_file = K_PATH_IMAGES . 'viriyah-logo.png';
+$image_file = 'img/' . 'viriyah-logo.png';
 $obj_pdf->Image($image_file, 18, 4, 100, '', 'png', '', 'c', false, 400, '', false, false, 0, false, false, false);
 
 $date = date("Y-m-d");

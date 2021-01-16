@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
- include "head.php";
+include "head.php";
 include_once('connectdb.php');
 session_start();
 error_reporting(0);
@@ -862,7 +862,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">ออกใบBOOK รถ <?php echo $results["id"]; ?></h4>
+                                                    <h4 class="modal-title">ออกใบBOOK รถ</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
                                                 <form action="book.php" method="POST">
@@ -912,7 +912,7 @@ while ($valued =  mysqli_fetch_assoc($querydriving)) {
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">ออกใบBOOK เรือ <?php echo $results["id"]; ?></h4>
+                                                    <h4 class="modal-title">ออกใบBOOK เรือ</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
                                                 <form action="book.php" method="POST">
